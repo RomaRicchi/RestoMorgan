@@ -410,10 +410,10 @@ public class ClienteVerMenu extends javax.swing.JInternalFrame {
 
     if (modelo.getColumnCount() == 0) {
         modelo.addColumn("Codigo");
+        modelo.addColumn("Tipo");
         modelo.addColumn("Nombre");
         modelo.addColumn("Precio");
         modelo.addColumn("Descripcion");
-        modelo.addColumn("Stock");
         // Configurar el modelo en la tabla
         jtMenuProductos.setModel(modelo);
         jtMenuProductos.getTableHeader().setReorderingAllowed(false); /*que no pueda mover las columnas*/
@@ -437,10 +437,10 @@ public class ClienteVerMenu extends javax.swing.JInternalFrame {
         // Agregar una fila con los detalles del producto a la tabla
         modelo.addRow(new Object[]{
             producto.getCodigo(),
+            producto.getTipo(),
             producto.getNombre(),
             producto.getPrecio(),
             producto.getDescripcion(),
-            producto.getStock(),
             
         });
        

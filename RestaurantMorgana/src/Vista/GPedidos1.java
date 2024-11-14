@@ -784,7 +784,7 @@ public class GPedidos1 extends javax.swing.JPanel {
 
                 // Seleccionar el estado del pedido
                 jRON.setSelected(pedido.isEstado());
-
+                jROFF.setSelected(pedido.isEstado());
                 // Cargar el pedido en la tabla `jTPedido`
                 cargarPedidosEnTabla(List.of(pedido));
 
