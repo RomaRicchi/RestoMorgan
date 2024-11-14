@@ -123,7 +123,6 @@ public class GReservas extends javax.swing.JPanel {
         jCBSector = new javax.swing.JComboBox<>();
         jBGuardar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jSIdMesa = new javax.swing.JSpinner();
         jDate = new com.toedter.calendar.JDateChooser();
         jSHora = new javax.swing.JSpinner();
@@ -133,13 +132,12 @@ public class GReservas extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jBModificar = new javax.swing.JButton();
         Limpiar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTR = new javax.swing.JTable();
         jSID = new javax.swing.JSpinner();
         jDate1 = new com.toedter.calendar.JDateChooser();
         jDate2 = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -154,6 +152,9 @@ public class GReservas extends javax.swing.JPanel {
         jtMesas = new javax.swing.JTable();
         filtroSit1 = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTR = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 153));
 
@@ -196,11 +197,6 @@ public class GReservas extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("MESA");
 
-        jLabel7.setFont(new java.awt.Font("Felix Titling", 3, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 102, 51));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("CREAR RESERVA");
-
         jDate.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDatePropertyChange(evt);
@@ -241,20 +237,6 @@ public class GReservas extends javax.swing.JPanel {
             }
         });
 
-        jTR.setBackground(new java.awt.Color(0, 153, 153));
-        jTR.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTR);
-
         jSID.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSIDStateChanged(evt);
@@ -274,11 +256,15 @@ public class GReservas extends javax.swing.JPanel {
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("HORA:");
 
+        jLabel17.setFont(new java.awt.Font("Felix Titling", 3, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 102, 51));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("CREAR RESERVA");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -286,16 +272,11 @@ public class GReservas extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGap(16, 16, 16)
-                                            .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(28, 28, 28)
-                                            .addComponent(jLabel9))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGap(6, 6, 6)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(18, 18, 18)
+                                    .addGap(16, 16, 16)
+                                    .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(28, 28, 28)
+                                    .addComponent(jLabel9)
+                                    .addGap(26, 26, 26)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addComponent(jSID, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,14 +318,17 @@ public class GReservas extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jDate2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(55, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(276, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBGuardar))
+                .addComponent(jBGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -392,9 +376,12 @@ public class GReservas extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jDate1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDate2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGap(131, 131, 131))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(535, Short.MAX_VALUE)))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 51));
@@ -475,6 +462,25 @@ public class GReservas extends javax.swing.JPanel {
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("SITUACION");
 
+        jTR.setBackground(new java.awt.Color(0, 153, 153));
+        jTR.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTR);
+
+        jLabel7.setFont(new java.awt.Font("Felix Titling", 3, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 102, 51));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("RESERVAS ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -482,24 +488,27 @@ public class GReservas extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jRON2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jROFF2))
-                            .addComponent(jSId2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCBSector1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(filtroSit1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel10)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(29, 29, 29)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel13)
+                                .addComponent(jLabel12)
+                                .addComponent(jLabel11)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jRON2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jROFF2))
+                                .addComponent(jSId2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCBSector1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(filtroSit1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -526,9 +535,13 @@ public class GReservas extends javax.swing.JPanel {
                     .addComponent(jLabel15)
                     .addComponent(jRON2)
                     .addComponent(jROFF2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -543,8 +556,8 @@ public class GReservas extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 545, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -607,6 +620,8 @@ public class GReservas extends javax.swing.JPanel {
 
         JOptionPane.showMessageDialog(this, "Reserva confirmada para: " + reservationDateTime);
         cargarDatos(); // Actualizar la tabla de reservas
+        List<Reserva> reservas = reservaData.listarReservas();  
+        cargarReservasEnTabla(reservas);
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     
@@ -682,12 +697,15 @@ public class GReservas extends javax.swing.JPanel {
 
                 reserva.setEstado(jRON.isSelected());
 
-                // Verificar disponibilidad antes de modificar la reserva
-                if (!reservaData.verificarDisponibilidad(reserva.getMesa().getIdMesa(), reserva.getFechaHora())) {
-                    JOptionPane.showMessageDialog(this, "No se puede modificar la reserva. La mesa no está disponible en el horario seleccionado.");
-                    return;
+                // Verificar disponibilidad solo si la reserva es para una fecha futura
+                if (fechaHora.isAfter(LocalDateTime.now())) {
+                    if (!reservaData.verificarDisponibilidad(reserva.getMesa().getIdMesa(), reserva.getFechaHora())) {
+                        JOptionPane.showMessageDialog(this, "No se puede modificar la reserva. La mesa no está disponible en el horario seleccionado.");
+                        return;
+                    }
                 }
 
+                // Modificar la reserva en la base de datos
                 reservaData.modificarReserva(reserva);
                 JOptionPane.showMessageDialog(this, "Reserva modificada exitosamente.");
                 cargarDatos();
@@ -697,7 +715,7 @@ public class GReservas extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al modificar la reserva: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }        
+        }
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jCBSector1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBSector1ActionPerformed
@@ -814,6 +832,31 @@ public class GReservas extends javax.swing.JPanel {
         return calendar.getTime();
     }
 
+    private void actualizarSpinnersConMesas(String sector) {
+        // Listar mesas en el sector y filtrar solo las que están en situación "Libre" y con estado true
+        List<Mesa> mesas = mesaData.listarMesasPorSector(sector).stream()
+                .filter(mesa -> "Libre".equalsIgnoreCase(mesa.getSituacion()) && mesa.isEstado())
+                .toList();
+
+        // Obtener los IDs de las mesas que cumplen con los criterios
+        List<Integer> mesaIds = mesas.stream()
+                .map(Mesa::getIdMesa)
+                .toList();
+
+        if (!mesaIds.isEmpty()) {
+            // Convertir la lista de IDs a un arreglo de Integer
+            Integer[] mesaIdsArray = mesaIds.toArray(new Integer[0]);
+
+            // Configurar el spinner para mostrar solo los IDs de las mesas filtradas
+            jSIdMesa.setModel(new SpinnerListModel(mesaIdsArray));
+            jSIdMesa.setValue(mesaIdsArray[0]); // Establecer el primer ID como valor inicial
+        } else {
+            // Si no hay mesas que cumplan con los criterios, configurar el spinner con un valor de 0 y mostrar un mensaje
+            jSIdMesa.setModel(new SpinnerNumberModel(0, 0, 0, 1));
+            JOptionPane.showMessageDialog(this, "No hay mesas disponibles en el sector seleccionado con la situación 'Libre'.", "Mesas no disponibles", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
     private void buscarYMostrarReserva(int idReserva) {
     // Obtener la reserva desde la base de datos
     Reserva reserva = reservaData.obtenerReservaPorId(idReserva);
@@ -850,28 +893,6 @@ public class GReservas extends javax.swing.JPanel {
         borrarFilas();
         List<Reserva> reservas = reservaData.obtenerReservasPorRangoFechaHora(inicio, fin);
         cargarReservasEnTabla(reservas);
-    }
-    
-    private void actualizarSpinnersConMesas(String sector) {  
-        List<Mesa> mesas = mesaData.listarMesasPorSector(sector);
-
-        // Obtener los IDs de todas las mesas, sin importar su estado o situación
-        List<Integer> mesaIds = mesas.stream()
-            .map(Mesa::getIdMesa)
-            .toList();
-
-        if (!mesaIds.isEmpty()) {
-            // Convertir la lista de IDs a un arreglo de Integer
-            Integer[] mesaIdsArray = mesaIds.toArray(new Integer[0]);
-
-            // Configurar el spinner para mostrar todos los IDs de las mesas
-            jSIdMesa.setModel(new SpinnerListModel(mesaIdsArray));
-            jSIdMesa.setValue(mesaIdsArray[0]); // Establecer el primer ID como valor inicial
-        } else {
-            // Si no hay mesas en el sector, configurar el spinner con un valor de 0 y mostrar un mensaje
-            jSIdMesa.setModel(new SpinnerNumberModel(0, 0, 0, 1));
-            JOptionPane.showMessageDialog(this, "No hay mesas en el sector seleccionado.", "Mesas no disponibles", JOptionPane.WARNING_MESSAGE);
-        }
     }
      
     private void filtrarReservaPorComensales(int comensales) {
@@ -1056,6 +1077,7 @@ public class GReservas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1135,7 +1157,7 @@ public class GReservas extends javax.swing.JPanel {
         List<Reserva> reservas = reservaData.listarReservas();  
         cargarReservasEnTabla(reservas);
     }
-        //  Cabecera de la 'tabla'
+        
     private void armarCabecera1() {
         modelo1 = new DefaultTableModel() {
             @Override
@@ -1156,7 +1178,7 @@ public class GReservas extends javax.swing.JPanel {
         jtMesas.getTableHeader().setReorderingAllowed(false); // Impide mover las columnas
     }
 
-    //  Cargar datos a la 'tabla'
+ 
     private void cargarDatos1() {
         modelo1.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
         List<Mesa> mesas = mesaData.listarMesas(); // Obtener la lista de mesas desde la fuente de datos

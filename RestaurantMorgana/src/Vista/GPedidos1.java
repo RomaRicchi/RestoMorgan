@@ -72,7 +72,7 @@ public class GPedidos1 extends javax.swing.JPanel {
         cargarPedidosEnTabla(pedidoData.listarPedidos());
         cargarProductosEnTabla(pedidoProductoData.obtenerPedidosProductos());
         configurarSeleccionPedidos();
-        cargarIDsPedidosEnSpinner();
+       
 
     }
 
@@ -231,11 +231,6 @@ public class GPedidos1 extends javax.swing.JPanel {
                 jSIDStateChanged(evt);
             }
         });
-        jSID.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jSIDPropertyChange(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -312,8 +307,8 @@ public class GPedidos1 extends javax.swing.JPanel {
                 .addGap(3, 3, 3)
                 .addComponent(jBGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSIDMesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSIDMesero, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -917,35 +912,35 @@ public class GPedidos1 extends javax.swing.JPanel {
         });
     }//GEN-LAST:event_CANTPropertyChange
 
-    private void jSIDPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jSIDPropertyChange
-        
-    }//GEN-LAST:event_jSIDPropertyChange
-
     private void jSIDStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSIDStateChanged
         int idPedido = (int) jSID.getValue();
 
         // Verificar si el valor de idPedido es válido (por ejemplo, no negativo ni cero)
-        if (idPedido <= 0) {
-            // Si el ID es inválido (por ejemplo, 0 o negativo), limpiar campos y salir
+        if (idPedido > 0) {
+            cargarPedidoEnComponentes(idPedido);
+        } else {
             limpiarCamposYTablas();
-            return;
         }
+    }//GEN-LAST:event_jSIDStateChanged
 
-        // Intentar obtener el pedido por ID
+    private void cargarPedidoEnComponentes(int idPedido) {
+        // Limpiar los campos en caso de que no se encuentre el pedido
+        limpiarCamposYTablas();
+
+        // Buscar el pedido por ID
         Pedido pedido = pedidoData.buscarPedidoPorId(idPedido);
 
-        // Verificar si se encuentra el pedido
+        // Verificar si el pedido fue encontrado
         if (pedido != null) {
             try {
-                // Si el pedido existe, se pueden cargar los datos
-                // Verifica si la mesa existe antes de asignar valores
+                // Cargar información de la mesa
                 if (pedido.getMesa() != null) {
                     jSIdMesa.setValue(pedido.getMesa().getIdMesa());
                 } else {
                     jSIdMesa.setValue(0); // Valor predeterminado si no hay mesa
                 }
-
-                // Verifica si el mesero existe antes de asignar valores
+                
+                // Cargar información del mesero
                 if (pedido.getMesero() != null) {
                     jSIDMesero.setValue(pedido.getMesero().getIdMesero());
                     jCNombre.setSelectedItem(pedido.getMesero().getNombre());
@@ -954,11 +949,10 @@ public class GPedidos1 extends javax.swing.JPanel {
                     jCNombre.setSelectedItem(null);
                 }
 
-                // Asignar la fecha completa al componente de fecha
+                // Cargar fecha y hora
                 Date fecha = Date.from(pedido.getFechaHora().atZone(ZoneId.systemDefault()).toInstant());
                 jDate.setDate(fecha);
 
-                // Extraer y asignar solo la hora
                 LocalTime localTime = pedido.getFechaHora().toLocalTime();
                 SpinnerDateModel model = new SpinnerDateModel();
                 model.setValue(Date.from(localTime.atDate(LocalDate.of(1970, 1, 1)).atZone(ZoneId.systemDefault()).toInstant()));
@@ -977,20 +971,22 @@ public class GPedidos1 extends javax.swing.JPanel {
                 cargarPedidosEnTabla(List.of(pedido));
 
                 // Obtener los productos asociados al pedido y cargarlos en la tabla `jTProd`
-                List<PedidoProducto> productos = pedidoProductoData.obtenerProductosPorPedido(pedido);
+                List<PedidoProducto> productos = new PedidoProductoData(con).obtenerProductosPorPedido(pedido);
                 cargarProductosEnTabla(productos);
+
+                
             } catch (Exception e) {
-                // Si ocurre un error al cargar los datos del pedido, mostrar mensaje y limpiar campos
+                // Mostrar un mensaje de error y limpiar los campos si ocurre un error
                 JOptionPane.showMessageDialog(this, "Error al cargar los datos del pedido: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 limpiarCamposYTablas();
             }
         } else {
-            // Si no se encuentra el pedido, mostrar mensaje de error y limpiar los campos
+            // Mostrar un mensaje de advertencia si no se encuentra el pedido
             JOptionPane.showMessageDialog(this, "No se encontró un pedido con el ID especificado.", "Error", JOptionPane.WARNING_MESSAGE);
             limpiarCamposYTablas();
         }
-    }//GEN-LAST:event_jSIDStateChanged
-
+    }
+    
     private void actualizarSpinnersConMesas(String sector) {
         // Listar mesas en el sector y filtrar solo las que están en situación "Libre" y con estado true
         List<Mesa> mesas = mesaData.listarMesasPorSector(sector).stream()
@@ -1089,22 +1085,6 @@ public class GPedidos1 extends javax.swing.JPanel {
         });
     }
     
-    private void cargarIDsPedidosEnSpinner() {
-        List<Integer> idsPedidos = pedidoData.obtenerTodosLosIdPedidos(); // Obtener IDs de la base de datos
-
-        // Verificar que la lista no esté vacía
-        if (!idsPedidos.isEmpty()) {
-            // Convertir la lista de IDs a un arreglo para el SpinnerListModel
-            Integer[] idsArray = idsPedidos.toArray(new Integer[0]);
-
-            // Establecer el modelo del spinner con los IDs de pedidos
-            jSID.setModel(new SpinnerListModel(idsArray));
-        } else {
-            // Si no hay pedidos, establecer el spinner con un valor por defecto
-            jSID.setModel(new SpinnerNumberModel(0, 0, 0, 1));
-            JOptionPane.showMessageDialog(this, "No se encontraron pedidos en la base de datos.", "Sin pedidos", JOptionPane.WARNING_MESSAGE);
-        }
-    }
 
     private void agregarListeners() {
         // Listener para actualizar jsidmesero cuando se seleccione un nombre en jtnombre
@@ -1127,7 +1107,85 @@ public class GPedidos1 extends javax.swing.JPanel {
             
             }
         });
+        
+        jSID.addChangeListener(e -> {
+            // Este listener reacciona cuando el valor de jSID cambia
+            Integer selectedId = (Integer) jSID.getValue();
+            if (selectedId != null) {
+                cargarPedidoEnComponentes(selectedId);  // Actualizar la vista con los datos del pedido seleccionado
+            }
+        });
+
+        
+        jSIDMesero.addChangeListener(e -> {
+            int idMeseroSeleccionado = (int) jSIDMesero.getValue();
+            Mesero mesero = meseroData.buscarMeseroPorId(idMeseroSeleccionado);
+
+            if (mesero != null) {
+                jCNombre.setSelectedItem(mesero.getNombre());
+
+                // Convertir el sector del mesero a minúsculas para compararlo con los elementos del JComboBox
+                String meseroSector = mesero.getSector().toLowerCase();
+                for (int i = 0; i < jCBSector.getItemCount(); i++) {
+                    String sector = jCBSector.getItemAt(i).toLowerCase();
+                    if (sector.equals(meseroSector)) {
+                        jCBSector.setSelectedIndex(i);
+                        break;
+                    }
+                }
+
+                // Obtener los pedidos realizados por el mesero seleccionado
+                List<Pedido> pedidos = pedidoData.buscarPedidosPorMesero(idMeseroSeleccionado);
+
+                if (!pedidos.isEmpty()) {
+                    // Obtener los IDs de los pedidos y configurarlos en el JSpinner (jSID)
+                    Integer[] pedidoIds = pedidos.stream().map(Pedido::getIdPedido).toArray(Integer[]::new);
+                    jSID.setModel(new SpinnerListModel(pedidoIds));
+                    jSID.setValue(pedidoIds[0]); // Establece el primer ID como valor inicial
+                } else {
+                    // Si no hay pedidos, establecer el JSpinner en 0 y mostrar un mensaje
+                    jSID.setModel(new SpinnerNumberModel(0, 0, 0, 1));
+                    
+                }
+            } else {
+                jCNombre.setSelectedIndex(-1);
+                jCBSector.setSelectedIndex(-1);
+                jSID.setModel(new SpinnerNumberModel(0, 0, 0, 1)); // Restablecer el JSpinner si no se encuentra el mesero
+            }
+        });
+        
+        jSIDMesero.addChangeListener(e -> {
+            int idMeseroSeleccionado = (int) jSIDMesero.getValue();
+            actualizarSpinnerPedidos(idMeseroSeleccionado); // Llamada a la función que carga los pedidos en jSID
+        });
+
+
     }
+    private void actualizarSpinnerPedidos(int idMeseroSeleccionado) {
+        // Obtener pedidos del mesero seleccionado
+        List<Pedido> pedidos = pedidoData.buscarPedidosPorMesero(idMeseroSeleccionado);
+
+        if (!pedidos.isEmpty()) {
+            // Crear lista de IDs de pedidos
+            Integer[] pedidoIds = pedidos.stream().map(Pedido::getIdPedido).toArray(Integer[]::new);
+
+            // Reinicializar el modelo del spinner con una nueva instancia de SpinnerListModel
+            jSID.setModel(new SpinnerListModel(pedidoIds));
+
+            // Establecer el primer valor del modelo y refrescar
+            jSID.setValue(pedidoIds[0]);
+
+        } else {
+            // Si no hay pedidos, configurar el spinner para mostrar "0" y mostrar mensaje
+            jSID.setModel(new SpinnerNumberModel(0, 0, 0, 1));
+            
+        }
+
+        // Refrescar visualmente el componente
+        jSID.repaint();
+        jSID.revalidate();
+    }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

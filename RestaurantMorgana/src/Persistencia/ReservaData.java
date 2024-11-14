@@ -26,11 +26,13 @@ public class ReservaData {
     }
 
     private void iniciarMonitorDeReservas() {
-        scheduler.scheduleAtFixedRate(this::verificarYActualizarReservas, 0, 1, TimeUnit.HOURS);
+        scheduler.scheduleAtFixedRate(this::verificarYActualizarReservas, 0, 1, TimeUnit.MINUTES);
+        System.out.println("Monitor de reservas iniciado.");
     }
 
     // 1.Método para verificar y actualizar reservas expiradas
     private void verificarYActualizarReservas() {
+        System.out.println("Verificando y actualizando reservas expiradas...");
         List<Reserva> reservas = listarReservas();
 
         for (Reserva reserva : reservas) {
@@ -59,6 +61,13 @@ public class ReservaData {
 
     // 2. Método para agregar una reserva y verificar disponibilidad
     public synchronized void agregarReserva(Reserva reserva) {
+        LocalDateTime ahora = LocalDateTime.now();
+
+        if (reserva.getFechaHora().isBefore(ahora)) {
+            JOptionPane.showMessageDialog(null, "No se puede hacer una reserva en una fecha y hora pasada.");
+            return;
+        }
+        
         if (!verificarDisponibilidad(reserva.getMesa().getIdMesa(), reserva.getFechaHora())) {
             JOptionPane.showMessageDialog(null, "La mesa no está disponible para el horario seleccionado.");
             return;
@@ -148,32 +157,16 @@ public class ReservaData {
 
     // 6. Método para modificar una reserva
     public boolean modificarReserva(Reserva reserva) {
-        // Verificar disponibilidad de la mesa
-        if (!verificarDisponibilidad(reserva.getMesa().getIdMesa(), reserva.getFechaHora())) {
-            
+        // Verificar si la reserva es futura o pasada
+        boolean esFutura = reserva.getFechaHora().isAfter(LocalDateTime.now());
+
+        // Verificar disponibilidad solo si es una reserva futura
+        if (esFutura && !verificarDisponibilidad(reserva.getMesa().getIdMesa(), reserva.getFechaHora())) {
+            JOptionPane.showMessageDialog(null, "No se puede modificar la reserva. La mesa no está disponible en el horario seleccionado.");
             return false;
         }
 
-        // Verificar que la mesa exista en la base de datos
-        Mesa mesaSeleccionada = mesaData.buscarMesa(reserva.getMesa().getIdMesa());
-        if (mesaSeleccionada == null) {
-            JOptionPane.showMessageDialog(null, "La mesa seleccionada no existe.");
-            return false;
-        }
-
-        // Verificar que la mesa esté en el sector especificado
-        if (!mesaSeleccionada.getSector().equalsIgnoreCase(reserva.getSector())) {
-            JOptionPane.showMessageDialog(null, "La mesa seleccionada no pertenece al sector especificado.");
-            return false;
-        }
-
-        // Verificar que la mesa esté en situación "libre" y en estado activo
-        if (!mesaSeleccionada.isEstado() || !"libre".equalsIgnoreCase(mesaSeleccionada.getSituacion())) {
-            JOptionPane.showMessageDialog(null, "La mesa seleccionada no está disponible (no está libre o no está habilitada).");
-            return false;
-        }
-
-        // Si pasa todas las verificaciones, proceder con la modificación
+        // Proceder con la actualización en la base de datos
         String sql = "UPDATE reserva SET idMesa = ?, nombreCliente = ?, telefono = ?, comensales = ?, sector = ?, fechaHora = ?, estado = ? WHERE idReserva = ?";
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, reserva.getMesa().getIdMesa());
@@ -182,7 +175,7 @@ public class ReservaData {
             ps.setInt(4, reserva.getComensales());
             ps.setString(5, reserva.getSector());
             ps.setTimestamp(6, Timestamp.valueOf(reserva.getFechaHora()));
-            ps.setBoolean(7, reserva.isEstado());
+            ps.setBoolean(7, reserva.isEstado()); // Modifica el estado independientemente de si la fecha es pasada o futura
             ps.setInt(8, reserva.getIdReserva());
 
             ps.executeUpdate();
@@ -193,6 +186,7 @@ public class ReservaData {
             return false;
         }
     }
+
 
     // 7. Método para obtener reservas por estado
     public List<Reserva> obtenerReservasPorEstado(boolean estado) {

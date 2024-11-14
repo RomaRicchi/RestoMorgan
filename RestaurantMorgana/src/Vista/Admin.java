@@ -230,7 +230,7 @@ public class Admin extends javax.swing.JInternalFrame {
                 .addComponent(jBGReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         barraUp.setBackground(new java.awt.Color(255, 153, 102));
@@ -246,7 +246,7 @@ public class Admin extends javax.swing.JInternalFrame {
             .addGroup(barraUpLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(440, Short.MAX_VALUE))
+                .addContainerGap(462, Short.MAX_VALUE))
         );
         barraUpLayout.setVerticalGroup(
             barraUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -216,7 +216,7 @@ public class MeseroData {
         ps.setString(8, mesero.getSector());
         ps.setBoolean(9, mesero.getEstado());
     }
-
+    
     private Mesero obtenerMeseroPorParametro(String sql, int parametro) {
         Mesero mesero = null;
 
@@ -226,7 +226,7 @@ public class MeseroData {
                 if (rs.next()) {
                     mesero = crearMeseroDesdeResultSet(rs);
                 } else {
-                    System.out.println("No se encontró un mesero con el parámetro dado.");
+                    System.out.println("No se encontró un mesero con el parámetro dado: " + parametro);
                 }
             }
         } catch (SQLException ex) {
@@ -235,6 +235,7 @@ public class MeseroData {
 
         return mesero;
     }
+
 
     public List<Mesero> listarMeserosPorEstado(boolean estado) {
         List<Mesero> meseros = new ArrayList<>();
