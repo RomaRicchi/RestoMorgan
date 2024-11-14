@@ -279,10 +279,10 @@ public class ClienteVerMenu extends javax.swing.JInternalFrame {
         // Agregar una fila con los detalles del producto a la tabla
         modelo.addRow(new Object[]{
             producto.getCodigo(),
+            producto.getTipo(),
             producto.getNombre(),
             producto.getPrecio(),
             producto.getDescripcion(),
-            producto.getStock(),
             
         });
        
@@ -299,10 +299,10 @@ public class ClienteVerMenu extends javax.swing.JInternalFrame {
         // Agregar una fila con los detalles del producto a la tabla
         modelo.addRow(new Object[]{
             producto.getCodigo(),
+            producto.getTipo(),
             producto.getNombre(),
             producto.getPrecio(),
             producto.getDescripcion(),
-            producto.getStock(),
             
         });
        
@@ -319,10 +319,10 @@ public class ClienteVerMenu extends javax.swing.JInternalFrame {
         // Agregar una fila con los detalles del producto a la tabla
         modelo.addRow(new Object[]{
             producto.getCodigo(),
+            producto.getTipo(),
             producto.getNombre(),
             producto.getPrecio(),
             producto.getDescripcion(),
-            producto.getStock(),
             
         });
        
@@ -339,10 +339,10 @@ public class ClienteVerMenu extends javax.swing.JInternalFrame {
         // Agregar una fila con los detalles del producto a la tabla
         modelo.addRow(new Object[]{
             producto.getCodigo(),
+            producto.getTipo(),
             producto.getNombre(),
             producto.getPrecio(),
             producto.getDescripcion(),
-            producto.getStock(),
             
         });
        
@@ -360,10 +360,10 @@ public class ClienteVerMenu extends javax.swing.JInternalFrame {
         // Agregar una fila con los detalles del producto a la tabla
         modelo.addRow(new Object[]{
             producto.getCodigo(),
+            producto.getTipo(),
             producto.getNombre(),
             producto.getPrecio(),
             producto.getDescripcion(),
-            producto.getStock(),
             
         });
        
