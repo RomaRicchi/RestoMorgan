@@ -736,10 +736,14 @@ public class GPedidos1 extends javax.swing.JPanel {
 
     private void jSIDStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSIDStateChanged
         int idPedido = (int) jSID.getValue();
+
+        // Si el ID de pedido es 0, limpiar los campos y salir del método
         if (idPedido == 0) {
             limpiarCamposYTablas();
-            return; // No mostrar mensaje de error si idPedido es 0
+            return; 
         }
+
+        // Buscar el pedido por ID
         Pedido pedido = pedidoData.buscarPedidoPorId(idPedido);
 
         if (pedido != null) {
@@ -747,7 +751,7 @@ public class GPedidos1 extends javax.swing.JPanel {
             jSIDMesero.setValue(pedido.getMesero().getIdMesero());
             jCNombre.setSelectedItem(pedido.getMesero().getNombre());
 
-            // Configurar la fecha y hora en los componentes correspondientes
+            
             Date fecha = Date.from(pedido.getFechaHora().atZone(ZoneId.systemDefault()).toInstant());
             jDate.setDate(fecha);
 
@@ -761,14 +765,15 @@ public class GPedidos1 extends javax.swing.JPanel {
             // Seleccionar el estado del pedido
             jRON.setSelected(pedido.isEstado());
 
-            // Cargar el pedido en la tabla de pedidos
-            cargarPedidosEnTabla(List.of(pedido));
+            // Cargar el pedido en la tabla `jTPedido`
+            cargarPedidosEnTabla(List.of(pedido)); // Muestra solo el pedido específico en la tabla
 
-            // Obtener los productos asociados al pedido y cargarlos en la tabla de productos
+            // Obtener los productos asociados al pedido y cargarlos en la tabla `jTProd`
             List<PedidoProducto> productos = pedidoProductoData.obtenerProductosPorPedido(pedido);
             cargarProductosEnTabla(productos);
 
         } else {
+            // Mostrar mensaje de error si no se encontró el pedido
             JOptionPane.showMessageDialog(this, "No se encontró un pedido con el ID especificado.", "Error", JOptionPane.WARNING_MESSAGE);
             limpiarCamposYTablas();
         }
@@ -937,10 +942,21 @@ public class GPedidos1 extends javax.swing.JPanel {
     }//GEN-LAST:event_IDPRODStateChanged
 
     private void CANTPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CANTPropertyChange
-        int cantidad = (int) CANT.getValue();
-        double precioUnitario = jTPRECIO.();
-        double precioTotal = precioUnitario * cantidad;
-        jTPRECIO.setText(String.valueOf(precioTotal)); 
+            CANT.addChangeListener(ev -> {
+            int cantidad = (int) CANT.getValue();
+
+            // Obtener el precio unitario desde jTPRECIO, si ya está configurado como precio unitario
+            double precioUnitario;
+            try {
+               precioUnitario = Double.parseDouble(jTPRECIO.getText()) / cantidad; // Si jTPRECIO ya tiene el precio total
+            } catch (NumberFormatException ex) {
+               precioUnitario = 0.0;
+               JOptionPane.showMessageDialog(null, "Error al leer el precio unitario.", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+
+            double precioTotal = precioUnitario * cantidad;
+            jTPRECIO.setText(String.valueOf(precioTotal)); // Actualiza jTPRECIO con el precio total
+        });
     }//GEN-LAST:event_CANTPropertyChange
     
     private void actualizarSpinnersConMesas(String sector) {  
@@ -1063,6 +1079,7 @@ public class GPedidos1 extends javax.swing.JPanel {
             }
         });
     }
+    
 
 
 
