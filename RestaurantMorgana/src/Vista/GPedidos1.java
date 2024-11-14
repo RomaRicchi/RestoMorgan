@@ -136,6 +136,7 @@ public class GPedidos1 extends javax.swing.JPanel {
         jSIDPROD = new javax.swing.JSpinner();
         jBGuardar1 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 153));
 
@@ -178,7 +179,7 @@ public class GPedidos1 extends javax.swing.JPanel {
         });
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("ID");
+        jLabel9.setText("pedido ID");
 
         jSID.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -250,59 +251,58 @@ public class GPedidos1 extends javax.swing.JPanel {
                 .addComponent(jBGuardar)
                 .addGap(52, 52, 52))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSID, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
-                                .addComponent(Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSIDMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(11, 11, 11)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel17)
-                                            .addComponent(jLabel3))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jSIDMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jCNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel8)
-                                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addComponent(jRON)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(jROFF))
-                                                    .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jSIdMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(57, 57, 57)
-                                                    .addComponent(jCBSector, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(jLabel16)
-                                                    .addGap(85, 85, 85)
-                                                    .addComponent(jSHora, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                .addGap(0, 27, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                                                .addComponent(jRON)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jROFF))
+                                            .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jSIdMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(57, 57, 57)
+                                            .addComponent(jCBSector, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel16)
+                                            .addGap(85, 85, 85)
+                                            .addComponent(jSHora, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(0, 27, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 36, Short.MAX_VALUE)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSID, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(9, 9, 9))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -461,104 +461,115 @@ public class GPedidos1 extends javax.swing.JPanel {
 
         jLabel20.setFont(new java.awt.Font("Felix Titling", 3, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 102, 51));
-        jLabel20.setText("PRODUCTOS DEL PEDIDO:");
+        jLabel20.setText("PEDIDO:");
+
+        jLabel21.setFont(new java.awt.Font("Felix Titling", 3, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 102, 51));
+        jLabel21.setText("PRODUCTOS DEL PEDIDO:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel10))
-                                .addGap(21, 21, 21)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(IDPEDIDO, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel19))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(IDPROD, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jCPROD, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(CANT, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel18)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTPRECIO, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addGap(27, 27, 27)
-                                .addComponent(jRON1)
-                                .addGap(25, 25, 25)
-                                .addComponent(jROFF1)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jBModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel11)
-                                .addGap(32, 32, 32)
-                                .addComponent(jSIDPROD, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2))
-                .addGap(0, 129, Short.MAX_VALUE))
+                                .addGap(27, 27, 27)
+                                .addComponent(jSIDPROD, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jRON1)
+                                    .addComponent(jBGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jROFF1))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel15))
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel13))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(CANT, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel18)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTPRECIO, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(IDPEDIDO, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel19))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(IDPROD, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCPROD, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2)))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(IDPEDIDO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(IDPROD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCPROD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IDPROD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(jCPROD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(CANT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18)
                     .addComponent(jTPRECIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRON1)
-                        .addComponent(jROFF1))
-                    .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jBGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jRON1)
+                    .addComponent(jROFF1))
+                .addGap(18, 18, 18)
+                .addComponent(jBGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSIDPROD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addGap(41, 41, 41))
+                    .addComponent(jLabel11)
+                    .addComponent(jSIDPROD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -598,46 +609,61 @@ public class GPedidos1 extends javax.swing.JPanel {
     }//GEN-LAST:event_jDatePropertyChange
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-        Date reservationDateTime = getSelectedDateTime();
+        Date fechaSeleccionada = jDate.getDate();
+        Date horaSeleccionada = (Date) jSHora.getValue();
 
+        // Verifica si la fecha seleccionada y la hora coinciden con el momento actual
+        Calendar calActual = Calendar.getInstance(); // Momento actual
+        Calendar calSeleccionada = Calendar.getInstance();
+
+        // Configura fecha y hora en el calendario de selección
+        calSeleccionada.setTime(fechaSeleccionada);
+        calSeleccionada.set(Calendar.HOUR_OF_DAY, horaSeleccionada.getHours());
+        calSeleccionada.set(Calendar.MINUTE, horaSeleccionada.getMinutes());
+
+        // Comparar fecha y hora seleccionada con fecha y hora actual
+        if (calSeleccionada.get(Calendar.YEAR) != calActual.get(Calendar.YEAR) ||
+            calSeleccionada.get(Calendar.DAY_OF_YEAR) != calActual.get(Calendar.DAY_OF_YEAR) ||
+            calSeleccionada.get(Calendar.HOUR_OF_DAY) != calActual.get(Calendar.HOUR_OF_DAY) ||
+            calSeleccionada.get(Calendar.MINUTE) != calActual.get(Calendar.MINUTE)) {
+
+            JOptionPane.showMessageDialog(this, "El pedido solo puede guardarse en el momento actual.", "Fecha y hora no válidas", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Obtiene la fecha y hora seleccionadas combinadas
+        Date reservationDateTime = getSelectedDateTime();
         if (reservationDateTime == null) {
             JOptionPane.showMessageDialog(this, "Seleccione una fecha y hora válidas.", "Fecha y Hora requeridas", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // Obtener el nombre del mesero seleccionado en el JComboBox
+        // Verificar que se haya seleccionado un mesero
         String nombreMesero = (String) jCNombre.getSelectedItem();
-        String sector = (String) jCBSector.getSelectedItem();
-        boolean estadoPedido = jRON.isSelected();
-
-        // Verificar que se ha seleccionado un nombre de mesero
         if (nombreMesero == null || nombreMesero.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Seleccione un mesero válido.", "Mesero requerido", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // Obtener el ID de la mesa seleccionada
+        // Obtener el ID de la mesa seleccionada y validar
         int idMesa = (int) jSIdMesa.getValue();
         if (idMesa == 0) {
             JOptionPane.showMessageDialog(this, "Seleccione una mesa válida para el sector.", "Mesa requerida", JOptionPane.WARNING_MESSAGE);
             return;
         }
-
-        // Buscar la mesa en la base de datos y validar el sector y estado
         Mesa mesaSeleccionada = mesaData.buscarMesa(idMesa);
+        String sector = (String) jCBSector.getSelectedItem();
         if (mesaSeleccionada == null || !mesaSeleccionada.getSector().equals(sector) || !mesaSeleccionada.isEstado()) {
             JOptionPane.showMessageDialog(this, "La mesa seleccionada no está disponible en el sector especificado.", "Mesa no disponible", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // Crear el nuevo pedido y asignar la mesa seleccionada
+        // Crear el pedido y asignar los datos
         Pedido nuevoPedido = new Pedido();
         nuevoPedido.setMesa(mesaSeleccionada);
 
-        // Obtener el ID del mesero desde el campo correspondiente
+        // Obtener y asignar el mesero al pedido
         int idMesero = (int) jSIDMesero.getValue();
-
-        // Buscar el mesero en la base de datos por su ID
         Mesero mesero = meseroData.buscarMeseroPorId(idMesero);
         if (mesero == null) {
             JOptionPane.showMessageDialog(this, "No se encontró un mesero con el ID especificado.", "Mesero requerido", JOptionPane.WARNING_MESSAGE);
@@ -645,14 +671,14 @@ public class GPedidos1 extends javax.swing.JPanel {
         }
         nuevoPedido.setMesero(mesero);
 
-        // Asignar la fecha y hora, convirtiéndola a LocalDateTime
+        // Asignar fecha y hora al pedido y el estado del pedido
         nuevoPedido.setFechaHora(reservationDateTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
-        nuevoPedido.setEstado(estadoPedido);
+        nuevoPedido.setEstado(jRON.isSelected());
 
         // Guardar el pedido en la base de datos
         pedidoData.crearPedido(nuevoPedido);
         JOptionPane.showMessageDialog(this, "Pedido creado exitosamente.");
-        cargarDatosPedidos(); // Actualizar la tabla de pedidos
+        cargarDatosPedidos();
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
@@ -678,10 +704,6 @@ public class GPedidos1 extends javax.swing.JPanel {
 
             // Verificar que la mesa seleccionada sea válida
             int idMesa = (int) jSIdMesa.getValue();
-            if (idMesa <= 0) {
-                JOptionPane.showMessageDialog(this, "ID de Mesa no válido.", "Error de Mesa", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
 
             Mesa mesaSeleccionada = mesaData.buscarMesa(idMesa);
             if (mesaSeleccionada == null) {
@@ -692,10 +714,6 @@ public class GPedidos1 extends javax.swing.JPanel {
 
             // Obtener y asignar el mesero
             int idMesero = (int) jSIDMesero.getValue();
-            if (idMesero <= 0) {
-                JOptionPane.showMessageDialog(this, "ID de Mesero no válido.", "Error", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
 
             Mesero mesero = meseroData.buscarMeseroPorId(idMesero);
             if (mesero == null) {
@@ -747,31 +765,36 @@ public class GPedidos1 extends javax.swing.JPanel {
         Pedido pedido = pedidoData.buscarPedidoPorId(idPedido);
 
         if (pedido != null) {
-            jSIdMesa.setValue(pedido.getMesa().getIdMesa());
-            jSIDMesero.setValue(pedido.getMesero().getIdMesero());
-            jCNombre.setSelectedItem(pedido.getMesero().getNombre());
+            try {
+                // Cargar datos del pedido en los componentes
+                jSIdMesa.setValue(pedido.getMesa().getIdMesa());
+                jSIDMesero.setValue(pedido.getMesero().getIdMesero());
+                jCNombre.setSelectedItem(pedido.getMesero().getNombre());
 
-            
-            Date fecha = Date.from(pedido.getFechaHora().atZone(ZoneId.systemDefault()).toInstant());
-            jDate.setDate(fecha);
+                // Asignar la fecha completa al componente de fecha
+                Date fecha = Date.from(pedido.getFechaHora().atZone(ZoneId.systemDefault()).toInstant());
+                jDate.setDate(fecha);
 
-            // Extraer solo la hora y asignarla a jSHora
-            Date timeValue = Date.from(pedido.getFechaHora().toLocalTime()
+                // Extraer y asignar solo la hora
+                Date timeValue = Date.from(pedido.getFechaHora().toLocalTime()
                                        .atDate(LocalDate.of(1970, 1, 1))
                                        .atZone(ZoneId.systemDefault())
                                        .toInstant());
-            jSHora.setValue(timeValue);
+                jSHora.setValue(timeValue);
 
-            // Seleccionar el estado del pedido
-            jRON.setSelected(pedido.isEstado());
+                // Seleccionar el estado del pedido
+                jRON.setSelected(pedido.isEstado());
 
-            // Cargar el pedido en la tabla `jTPedido`
-            cargarPedidosEnTabla(List.of(pedido)); // Muestra solo el pedido específico en la tabla
+                // Cargar el pedido en la tabla `jTPedido`
+                cargarPedidosEnTabla(List.of(pedido));
 
-            // Obtener los productos asociados al pedido y cargarlos en la tabla `jTProd`
-            List<PedidoProducto> productos = pedidoProductoData.obtenerProductosPorPedido(pedido);
-            cargarProductosEnTabla(productos);
-
+                // Obtener los productos asociados al pedido y cargarlos en la tabla `jTProd`
+                List<PedidoProducto> productos = pedidoProductoData.obtenerProductosPorPedido(pedido);
+                cargarProductosEnTabla(productos);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al cargar los datos del pedido: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                limpiarCamposYTablas();
+            }
         } else {
             // Mostrar mensaje de error si no se encontró el pedido
             JOptionPane.showMessageDialog(this, "No se encontró un pedido con el ID especificado.", "Error", JOptionPane.WARNING_MESSAGE);
@@ -793,7 +816,7 @@ public class GPedidos1 extends javax.swing.JPanel {
 
     private void jCBSectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBSectorActionPerformed
         if (jCBSector.getSelectedItem() != null) {
-            String selectedSector  = jCBSector.getSelectedItem().toString();
+            String selectedSector  = jCBSector.getSelectedItem().toString().toLowerCase();
             actualizarSpinnersConMesas(selectedSector);
             filtrarPedidoPorSector(selectedSector);  
             System.out.println("Sector seleccionado: " + selectedSector );
@@ -802,13 +825,13 @@ public class GPedidos1 extends javax.swing.JPanel {
 
     private void jSIDMeseroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSIDMeseroStateChanged
         int idMesero = (int) jSIDMesero.getValue();
-        // Verificar si el idMesero es 0, en cuyo caso no se realiza ninguna acción
+        
         
         Mesero mesero = meseroData.buscarMeseroPorId(idMesero);
 
         if (mesero != null) {
             jCNombre.setSelectedItem(mesero.getNombre()); // Selecciona el nombre del mesero en el JComboBox
-
+            jCBSector.setSelectedItem(mesero.getSector().toLowerCase());
             // Obtener y mostrar los pedidos del mesero en la tabla de pedidos
             List<Pedido> pedidos = pedidoData.buscarPedidosPorMesero(idMesero);
             cargarPedidosEnTabla(pedidos); // Método que carga los pedidos en la tabla `jTPedido`
@@ -951,7 +974,7 @@ public class GPedidos1 extends javax.swing.JPanel {
                precioUnitario = Double.parseDouble(jTPRECIO.getText()) / cantidad; // Si jTPRECIO ya tiene el precio total
             } catch (NumberFormatException ex) {
                precioUnitario = 0.0;
-               JOptionPane.showMessageDialog(null, "Error al leer el precio unitario.", "Error", JOptionPane.WARNING_MESSAGE);
+               
             }
 
             double precioTotal = precioUnitario * cantidad;
@@ -960,9 +983,12 @@ public class GPedidos1 extends javax.swing.JPanel {
     }//GEN-LAST:event_CANTPropertyChange
     
     private void actualizarSpinnersConMesas(String sector) {  
-        List<Mesa> mesas = mesaData.listarMesasPorSector(sector);
-       
-        // Obtener los IDs de todas las mesas, sin importar su estado o situación
+        // Listar mesas en el sector y filtrar solo las que están en situación "Libre" y con estado true
+        List<Mesa> mesas = mesaData.listarMesasPorSector(sector).stream()
+            .filter(mesa -> "Libre".equalsIgnoreCase(mesa.getSituacion()) && mesa.isEstado())
+            .toList();
+
+        // Obtener los IDs de las mesas que cumplen con los criterios
         List<Integer> mesaIds = mesas.stream()
             .map(Mesa::getIdMesa)
             .toList();
@@ -971,16 +997,16 @@ public class GPedidos1 extends javax.swing.JPanel {
             // Convertir la lista de IDs a un arreglo de Integer
             Integer[] mesaIdsArray = mesaIds.toArray(new Integer[0]);
 
-            // Configurar el spinner para mostrar todos los IDs de las mesas
+            // Configurar el spinner para mostrar solo los IDs de las mesas filtradas
             jSIdMesa.setModel(new SpinnerListModel(mesaIdsArray));
             jSIdMesa.setValue(mesaIdsArray[0]); // Establecer el primer ID como valor inicial
         } else {
-            // Si no hay mesas en el sector, configurar el spinner con un valor de 0 y mostrar un mensaje
+            // Si no hay mesas que cumplan con los criterios, configurar el spinner con un valor de 0 y mostrar un mensaje
             jSIdMesa.setModel(new SpinnerNumberModel(0, 0, 0, 1));
-            JOptionPane.showMessageDialog(this, "No hay mesas en el sector seleccionado.", "Mesas no disponibles", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No hay mesas disponibles en el sector seleccionado con la situación 'Libre'.", "Mesas no disponibles", JOptionPane.WARNING_MESSAGE);
         }
     }
-    
+
     private void filtrarPedidoPorSector(String sector) {
         modeloPedidos.setRowCount(0);
         List<Pedido> pedidos = pedidoData.obtenerPedidosPorSector(sector);         
@@ -988,7 +1014,7 @@ public class GPedidos1 extends javax.swing.JPanel {
     }
     
     private void filtrarPorRangoFechaHora(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
-        modeloPedidos.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
+        modeloPedidos.setRowCount(0); 
 
         // Verificar que fechaInicio sea menor o igual que fechaFin
         if (fechaInicio.isAfter(fechaFin)) {
@@ -996,7 +1022,6 @@ public class GPedidos1 extends javax.swing.JPanel {
             return;
         }
 
-        // Ejecutar el filtrado en el rango de fechas si las fechas son válidas
         List<Pedido> pedidos = pedidoData.buscarPedidosPorRangoDeFechas(fechaInicio.toLocalDate(), fechaFin.toLocalDate());
         if (pedidos.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No se encontraron pedidos en el rango especificado.", "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
@@ -1006,7 +1031,7 @@ public class GPedidos1 extends javax.swing.JPanel {
     }
 
     private void cargarPedidosPorEstado(boolean estado) {
-        modeloPedidos.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
+        modeloPedidos.setRowCount(0);
         List<Pedido> pedido = pedidoData.buscarPedidosPorEstado(estado); 
             for (Pedido p : pedido) {
                 modeloPedidos.addRow(new Object[]{
@@ -1110,6 +1135,7 @@ public class GPedidos1 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1141,12 +1167,29 @@ public class GPedidos1 extends javax.swing.JPanel {
         List<Pedido> pedidos = pedidoData.listarPedidos();  
         cargarPedidosEnTabla(pedidos);
     }
-        
-
+    
+    private void cargarPedidosEnTabla(List<Pedido> pedidos) {
+        modeloPedidos.setRowCount(0);
+        for (Pedido p : pedidos) {
+            modeloPedidos.addRow(new Object[]{
+                p.getIdPedido(), p.getMesa().getIdMesa(), p.getMesero().getIdMesero(), p.getFechaHora(), p.isEstado() ? "Activo" : "Pago"
+            });
+        }
+    }
+       
     private void cargarDatosProd() {
         modeloProductos.setRowCount(0); 
         List<PedidoProducto> producto = pedidoProductoData.obtenerPedidosProductos(); 
         cargarProductosEnTabla(producto);
+    }
+
+    private void cargarProductosEnTabla(List<PedidoProducto> productos) {
+        modeloProductos.setRowCount(0);
+        for (PedidoProducto prod : productos) {
+            modeloProductos.addRow(new Object[]{
+                prod.getIdPedidoProducto(), prod.getPedido().getIdPedido(), prod.getProducto().getIdProducto(), prod.getCantidad(), prod.getSubtotal(), prod.isEstado() ? "Sumado" : "Restado"
+            });
+        }
     }
     
     private void inicializarGruposBotones() {
@@ -1209,24 +1252,6 @@ public class GPedidos1 extends javax.swing.JPanel {
         jSIDPROD.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
     }
 
-    private void cargarPedidosEnTabla(List<Pedido> pedidos) {
-        modeloPedidos.setRowCount(0);
-        for (Pedido p : pedidos) {
-            modeloPedidos.addRow(new Object[]{
-                p.getIdPedido(), p.getMesa().getIdMesa(), p.getMesero().getIdMesero(), p.getFechaHora(), p.isEstado() ? "Activo" : "Pago"
-            });
-        }
-    }
-
-    private void cargarProductosEnTabla(List<PedidoProducto> productos) {
-        modeloProductos.setRowCount(0);
-        for (PedidoProducto prod : productos) {
-            modeloProductos.addRow(new Object[]{
-                prod.getIdPedidoProducto(), prod.getPedido().getIdPedido(), prod.getProducto().getIdProducto(), prod.getCantidad(), prod.getSubtotal(), prod.isEstado() ? "Sumado" : "Restado"
-            });
-        }
-    }
-
     private void cargarNombresMeseros() {
         List<Mesero> meseros = meseroData.listarMeseros(); // Obtener lista de meseros desde la base de datos
         jCNombre.removeAllItems(); // Limpiar el ComboBox antes de cargar nuevos datos
@@ -1257,16 +1282,23 @@ public class GPedidos1 extends javax.swing.JPanel {
             Mesero mesero = meseroData.buscarMeseroPorId(idMeseroSeleccionado);
             if (mesero != null) {
                 jCNombre.setSelectedItem(mesero.getNombre());
-                jCBSector.setSelectedItem(mesero.getSector()); 
+
+                // Convertir el sector del mesero a minúsculas para compararlo con los elementos del JComboBox
+                String meseroSector = mesero.getSector().toLowerCase();
+                for (int i = 0; i < jCBSector.getItemCount(); i++) {
+                    String sector = jCBSector.getItemAt(i).toLowerCase();
+                    if (sector.equals(meseroSector)) {
+                        jCBSector.setSelectedIndex(i);
+                        break;
+                    }
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontró un mesero con el ID en la base de datos: " + idMeseroSeleccionado, "Mesero no encontrado", JOptionPane.WARNING_MESSAGE);
                 jCNombre.setSelectedIndex(-1); 
                 jCBSector.setSelectedIndex(-1); 
-
             }
         });
     }
-    
+
     private void cargarProductosEnComboBox() {
         List<String> nombresProductos = productoData.obtenerNombresDeProductos();
         jCPROD.removeAllItems();
@@ -1292,8 +1324,12 @@ public class GPedidos1 extends javax.swing.JPanel {
     }
 
     private void configureDateTimePickers() {
+        Date fechaActual = new Date();
         jDate.setDateFormatString("dd-MM-yyyy");
         jDate.setMinSelectableDate(new Date());
+        jDate.setDate(fechaActual); // Establece la fecha actual como la fecha seleccionada
+        jDate.setMinSelectableDate(fechaActual); // Fecha mínima
+        jDate.setMaxSelectableDate(fechaActual); // Fecha máxima
         jSHora.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.MINUTE));
         jSHora.setEditor(new JSpinner.DateEditor(jSHora, "HH:mm"));
         jDate1.setDateFormatString("dd-MM-yyyy");
@@ -1339,10 +1375,10 @@ public class GPedidos1 extends javax.swing.JPanel {
             jCBSector.setSelectedIndex(-1);
             jCPROD.setSelectedIndex(-1);
             jSIdMesa.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
-            jSIDMesero.setValue(1);
+            jSIDMesero.setValue(0);
             jSID.setValue(0);
             IDPEDIDO.setValue(0);
-            IDPROD.setValue(1);
+            IDPROD.setValue(0);
             CANT.setValue(0);
             jSIDPROD.setValue(0);
             jTPRECIO.setText("");
