@@ -40,7 +40,7 @@ public class GMeseros extends javax.swing.JPanel {
         iniciarConexion();
         armarCabecera();
         cargarDatos();
-        configurarFiltros();
+        configurarRestricciones();
     }
 
     /**
@@ -148,25 +148,7 @@ public class GMeseros extends javax.swing.JPanel {
 
         jLabel11.setText("INGRESO");
 
-        jTFDNI.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFDNIActionPerformed(evt);
-            }
-        });
-
-        jTFMail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFMailActionPerformed(evt);
-            }
-        });
-
         jLabel12.setText("EMAIL");
-
-        jTFTel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFTelActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -175,6 +157,9 @@ public class GMeseros extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -189,30 +174,20 @@ public class GMeseros extends javax.swing.JPanel {
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
                                 .addComponent(jTFTel))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jBGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel12)
                                     .addComponent(jLabel11))
-                                .addGap(49, 49, 49)
+                                .addGap(43, 43, 43)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTFMail)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jCBTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(jRON)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(jROFF, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(jCBSector, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
+                                        .addComponent(jRON)
+                                        .addGap(25, 25, 25)
+                                        .addComponent(jROFF, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jCBSector, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jCBTurno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTFMail))))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,14 +196,17 @@ public class GMeseros extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jBModificar1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jSId, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBLimpiar)))
-                        .addGap(0, 6, Short.MAX_VALUE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jBModificar1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSId, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jBLimpiar)))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,8 +214,8 @@ public class GMeseros extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBGuardar1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -301,7 +279,7 @@ public class GMeseros extends javax.swing.JPanel {
 
         jLabel16.setText("TURNO");
 
-        filtroSit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Libre", "Ocupada", "Reservada" }));
+        filtroSit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mañana", "Tarde" }));
         filtroSit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 filtroSitActionPerformed(evt);
@@ -350,35 +328,32 @@ public class GMeseros extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel16))
-                                        .addGap(78, 78, 78)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(filtroSit, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                    .addComponent(jRON2)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jROFF2))
-                                                .addComponent(filtroSec, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbAsignar)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel16))
+                                .addGap(78, 78, 78)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(filtroSit, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jRON2)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jROFF2))
+                                        .addComponent(filtroSec, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbAsignar))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -466,16 +441,33 @@ public class GMeseros extends javax.swing.JPanel {
     }//GEN-LAST:event_jBModificar1ActionPerformed
 
     private void jSIdStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSIdStateChanged
-         int idMesero = (int) jSId.getValue();
+        int idMesero = (int) jSId.getValue();
         Mesero mesero = meseroData.buscarMeseroPorId(idMesero);
 
         if (mesero != null) {
+            // Rellenar los campos con los datos del mesero
             jTFNombre.setText(mesero.getNombre());
             jTFDNI.setText(String.valueOf(mesero.getDni()));
-            jTFMail.setText(mesero.getEmail());
             jTFTel.setText(mesero.getTelefono());
-            jCBSector.setSelectedItem(mesero.getSector());
-            jCBTurno.setSelectedItem(mesero.getTurno());
+            jTFMail.setText(mesero.getEmail());
+
+            // Configurar el sector, ignorando mayúsculas y minúsculas
+            for (int i = 0; i < jCBSector.getItemCount(); i++) {
+                if (jCBSector.getItemAt(i).equalsIgnoreCase(mesero.getSector())) {
+                    jCBSector.setSelectedIndex(i);
+                    break;
+                }
+            }
+
+            // Configurar el turno, ignorando mayúsculas y minúsculas
+            for (int i = 0; i < jCBTurno.getItemCount(); i++) {
+                if (jCBTurno.getItemAt(i).equalsIgnoreCase(mesero.getTurno())) {
+                    jCBTurno.setSelectedIndex(i);
+                    break;
+                }
+            }
+
+            // Configurar los botones de estado
             jRON.setSelected(mesero.getEstado());
             jROFF.setSelected(!mesero.getEstado());
 
@@ -493,75 +485,131 @@ public class GMeseros extends javax.swing.JPanel {
     }//GEN-LAST:event_jBLimpiarActionPerformed
 
     private void jROFF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jROFF2ActionPerformed
-        cargarMesero("estado", false);
+       filtrarMeseros("estado", false);
     }//GEN-LAST:event_jROFF2ActionPerformed
 
     private void filtroSecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroSecActionPerformed
-        cargarMesero("sector", filtroSec.getSelectedItem().toString());
+        filtrarMeseros("sector", filtroSec.getSelectedItem().toString());
     }//GEN-LAST:event_filtroSecActionPerformed
 
     private void filtroSitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroSitActionPerformed
-        cargarMesero("situacion", filtroSit.getSelectedItem().toString());
+        filtrarMeseros("situacion", filtroSit.getSelectedItem().toString());
     }//GEN-LAST:event_filtroSitActionPerformed
 
     private void jRON2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRON2ActionPerformed
-        cargarMesero("estado", true);
+        filtrarMeseros("estado", true);
     }//GEN-LAST:event_jRON2ActionPerformed
 
-    private void jTFMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFMailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFMailActionPerformed
-
-    private void jTFDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFDNIActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFDNIActionPerformed
-
-    private void jTFTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelActionPerformed
+    private void jbAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAsignarActionPerformed
        meseroData.asignarSectoresYTurnosAleatoriamente();
        cargarDatos();
-    }//GEN-LAST:event_jTFTelActionPerformed
-
-    private void jbAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAsignarActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jbAsignarActionPerformed
-
-    private void cargarMesero(String criterio, Object valor) {
+    
+    private void filtrarMeseros(String criterio, Object valor) { 
         modeloMesero.setRowCount(0);
         List<Mesero> meseros;
 
-        switch (criterio) {
-            case "estado":
-                meseros = meseroData.listarMeserosPorEstado((boolean) valor);
-                break;
-            case "sector":
-                meseros = meseroData.listarMeserosPorSector((String) valor);
-                break;
-            case "turno":
-                meseros = meseroData.listarMeserosPorTurno((String) valor);
-                break;
-            default:
-                meseros = meseroData.listarMeseros();
-        }
+        try {
+            switch (criterio) {
+                case "nombre":
+                    meseros = meseroData.obtenerMeseroPorNombre((String) valor);
+                    break;
+                case "telefono":
+                    meseros = meseroData.obtenerMeseroPorTelefono((String) valor);
+                    break;
+                case "estado":
+                    meseros = meseroData.listarMeserosPorEstado((Boolean) valor);
+                    break;
+                case "sector":
+                    meseros = meseroData.listarMeserosPorSector((String) valor);
+                    break;
+                case "turno":
+                    meseros = meseroData.listarMeserosPorTurno((String) valor);
+                    break;
+                default:
+                    meseros = meseroData.listarMeseros();
+            }
 
-        for (Mesero m : meseros) {
-            modeloMesero.addRow(new Object[]{
-                m.getIdMesero(),
-                m.getNombre(),
-                m.getDni(),
-                m.getTelefono(),
-                m.getEmail(),
-                m.getFechaRegistro(),
-                m.getTurno(),
-                m.getSector(),
-                m.getEstado() ? "Activo" : "Inactivo"
-            });
+            for (Mesero m : meseros) {
+                modeloMesero.addRow(new Object[]{
+                    m.getIdMesero(),
+                    m.getNombre(),
+                    m.getDni(),
+                    m.getTelefono(),
+                    m.getEmail(),
+                    m.getFechaRegistro(),
+                    m.getTurno(),
+                    m.getSector(),
+                    m.getEstado() ? "Activo" : "Inactivo"
+                });
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El valor ingresado no es válido para el criterio seleccionado.", "Error de formato", JOptionPane.WARNING_MESSAGE);
         }
     }
+
+    
     private boolean validarEmail(String email) {
         String emailRegex = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
         Pattern pattern = Pattern.compile(emailRegex);
         return pattern.matcher(email).matches();
     }
+    
+    private void configurarRestricciones() {
+        jTFNombre.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filtrarMeseros("nombre", jTFNombre.getText().trim());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filtrarMeseros("nombre", jTFNombre.getText().trim());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filtrarMeseros("nombre", jTFNombre.getText().trim());
+            }
+        });
+
+        // Filtro dinámico para DNI
+        jTFDNI.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filtrarMeseros("dni", jTFDNI.getText().trim());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filtrarMeseros("dni", jTFDNI.getText().trim());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filtrarMeseros("dni", jTFDNI.getText().trim());
+            }
+        });
+
+        // Filtro dinámico para Teléfono
+        jTFTel.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filtrarMeseros("telefono", jTFTel.getText().trim());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filtrarMeseros("telefono", jTFTel.getText().trim());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filtrarMeseros("telefono", jTFTel.getText().trim());
+            }
+        });
+    }
+
     
     private boolean validarCampos() {
         String email = jTFMail.getText();
@@ -575,8 +623,8 @@ public class GMeseros extends javax.swing.JPanel {
     private Mesero configurarMesero(Mesero mesero) {
         mesero.setNombre(jTFNombre.getText());
         mesero.setDni(Integer.parseInt(jTFDNI.getText()));
-        mesero.setTelefono(jTFMail.getText());
-        mesero.setEmail(jTFTel.getText());
+        mesero.setTelefono(jTFTel.getText());
+        mesero.setEmail(jTFMail.getText());
         mesero.setFechaRegistro(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         mesero.setTurno(jCBTurno.getSelectedItem().toString());
         mesero.setSector(jCBSector.getSelectedItem().toString());
@@ -584,56 +632,6 @@ public class GMeseros extends javax.swing.JPanel {
         return mesero;
     }
     
-    private void configurarFiltros() {
-        // Filtro letra por letra para el nombre
-        jTFNombre.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                filtrarNombre();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                filtrarNombre();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                filtrarNombre();
-            }
-        });
-
-        // Solo números en DNI
-        jTFDNI.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar();
-                if (!Character.isDigit(c)) {
-                    e.consume(); // Ignorar si no es número
-                }
-            }
-        });
-
-        // Solo números en Teléfono
-        jTFTel.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar();
-                if (!Character.isDigit(c)) {
-                    e.consume(); // Ignorar si no es número
-                }
-            }
-        });
-    }
-    
-    private void filtrarNombre() {
-        String texto = jTFNombre.getText().trim();
-        if (!texto.isEmpty()) {
-            cargarMesero("nombre", texto);
-        } else {
-            cargarMesero("", null); // Cargar todos los meseros si el campo está vacío
-        }
-    }
     private void configurarComponentes() {
         modeloMesero = new DefaultTableModel() {
             @Override
@@ -724,6 +722,6 @@ public class GMeseros extends javax.swing.JPanel {
     }
 
     private void cargarDatos() {
-        cargarMesero("", null); 
+        filtrarMeseros("", null); 
     }
 }

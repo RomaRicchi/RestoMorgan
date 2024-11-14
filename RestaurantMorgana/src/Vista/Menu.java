@@ -34,7 +34,6 @@ public class Menu extends javax.swing.JFrame {
         jBAdmin = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        jBMesero = new javax.swing.JButton();
         jBCliente = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -79,15 +78,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel2.setText("Menú Principal");
         panel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
 
-        jBMesero.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jBMesero.setText("Mesero");
-        jBMesero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBMeseroActionPerformed(evt);
-            }
-        });
-        panel1.add(jBMesero, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 140, 46));
-
         jBCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jBCliente.setText("Cliente");
         jBCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +85,7 @@ public class Menu extends javax.swing.JFrame {
                 jBClienteActionPerformed(evt);
             }
         });
-        panel1.add(jBCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 450, 140, 50));
+        panel1.add(jBCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 140, 50));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Menu.png"))); // NOI18N
 
@@ -113,12 +103,12 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap())
         );
         escritorioLayout.setVerticalGroup(
-            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(escritorioLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,12 +126,6 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
   
-  // 1. Ingreso: Mesero
-  private void jBMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMeseroActionPerformed
-
-   
-  }//GEN-LAST:event_jBMeseroActionPerformed
-
     private void jBClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBClienteActionPerformed
        ClienteVerMenu clienteFrame = new ClienteVerMenu (); // Suponiendo que tienes un JInternalFrame para ver menu de productos
        escritorio.add(clienteFrame);
@@ -204,7 +188,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JButton jBAdmin;
     private javax.swing.JButton jBCliente;
-    private javax.swing.JButton jBMesero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

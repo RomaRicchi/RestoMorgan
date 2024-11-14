@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date ;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -44,10 +43,26 @@ public class MeseroData {
     }
     
     // 3. Buscar mesero por DNI
-    public Mesero buscarMeseroPorDni(int dni) {
-         String sql = "SELECT * FROM mesero WHERE dni = ?";
-        return obtenerMeseroPorParametro(sql, dni);
+    public List<Mesero> obtenerMeseroPorDni(String dni) {
+        List<Mesero> meseros = new ArrayList<>();
+        String sql = "SELECT * FROM mesero WHERE dni LIKE ?";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, dni + "%"); // Aquí usamos dni como String para el LIKE
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    meseros.add(crearMeseroDesdeResultSet(rs));
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar meseros por DNI: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return meseros;
     }
+
+
 
     // 4. Modificar mesero
     public void modificarMesero(Mesero mesero){
@@ -91,8 +106,7 @@ public class MeseroData {
 
             if (filasAfectadas > 0) {
                 System.out.println("Mesero dado de alta correctamente. \n");
-            } else {
-                System.out.println("No se encontró un mesero con el ID: " + id);
+            
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al dar de alta el mesero: " + ex.getMessage());
@@ -111,8 +125,7 @@ public class MeseroData {
 
             if (filasAfectadas > 0) {
                 System.out.println("Mesero dado de baja correctamente. \n");
-            } else {
-                System.out.println("No se encontró un mesero con el ID: " + id);
+           
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al dar de baja el mesero: " + ex.getMessage());
@@ -157,27 +170,7 @@ public class MeseroData {
         }
     }
     
-    public int buscarMeseroPorId1(int idMesero) {
-        int resultadoId = -1; // Inicializamos el resultado como -1, para indicar que no se encontró el mesero.
-
-        String sql = "SELECT idMesero FROM mesero WHERE idMesero = ?"; // Modificamos la consulta para que solo obtenga el ID.
-
-        try (PreparedStatement ps = con.prepareStatement(sql)) { 
-            ps.setInt(1, idMesero); // Establecemos el parámetro en la consulta SQL con el valor de `idMesero`.
-
-            ResultSet rs = ps.executeQuery(); // Ejecutamos la consulta y almacenamos los resultados en un ResultSet.
-
-            if (rs.next()) { // Si el ResultSet tiene un registro (indica que encontró un mesero con ese ID).
-                resultadoId = rs.getInt("idMesero"); // Asignamos el ID del mesero al resultado.
-            } else {
-                System.out.println("No se encontró un mesero con el ID: " + idMesero); // Si no se encontró, muestra un mensaje.
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al buscar el mesero por ID: " + ex.getMessage()); // Maneja errores de SQL.
-        }
-
-        return resultadoId; // Devuelve el ID del mesero si se encontró, o -1 si no se encontró.
-    }
+    
     
     public List<Mesero> obtenerMeseroPorNombre(String nombreMesero) {
         List<Mesero> meseros = new ArrayList<>();
@@ -263,10 +256,10 @@ public class MeseroData {
 
     public List<Mesero> listarMeserosPorSector(String sector) {
         List<Mesero> meseros = new ArrayList<>();
-        String sql = "SELECT * FROM mesero WHERE sector = ?";
+        String sql = "SELECT * FROM mesero WHERE LOWER(sector) = LOWER(?)";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, sector);
+            ps.setString(1, sector); // No es necesario convertir aquí, ya que la consulta lo hace
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     meseros.add(crearMeseroDesdeResultSet(rs));
@@ -279,12 +272,13 @@ public class MeseroData {
         return meseros;
     }
 
+
     public List<Mesero> listarMeserosPorTurno(String turno) {
         List<Mesero> meseros = new ArrayList<>();
-        String sql = "SELECT * FROM mesero WHERE turno = ?";
+        String sql = "SELECT * FROM mesero WHERE LOWER(turno) = LOWER(?)";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, turno);
+            ps.setString(1, turno); // No es necesario convertir aquí, ya que la consulta lo hace
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     meseros.add(crearMeseroDesdeResultSet(rs));
@@ -296,6 +290,7 @@ public class MeseroData {
 
         return meseros;
     }
+
     
     public void asignarSectoresYTurnosAleatoriamente() {
         List<Mesero> meseros = listarMeseros();
@@ -313,14 +308,38 @@ public class MeseroData {
             mesero.setTurno(turno);
 
             // Actualizamos el mesero en la base de datos
-            modificarMesero(mesero);
-            
-            JOptionPane.showMessageDialog(null,"Asignación aleatoria de sectores y turnos completada.");
+            modificarMesero(mesero);    
         }
+        JOptionPane.showMessageDialog(null,"Asignación aleatoria de sectores y turnos completada.");
         }else{
             JOptionPane.showMessageDialog(null,"error listar meseros");    
                 }
   
     }
+    
+    public List<Mesero> obtenerMeseroPorTelefono(String telefono) {
+        List<Mesero> meseros = new ArrayList<>();
+        String sql = "SELECT * FROM mesero WHERE telefono LIKE ?";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, telefono + "%");
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    meseros.add(crearMeseroDesdeResultSet(rs));
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar meseros por teléfono: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return meseros;
+    }
+
+  
+    public Mesero buscarMeseroPorDni1(int dni) {
+         String sql = "SELECT * FROM mesero WHERE dni = ?";
+        return obtenerMeseroPorParametro(sql, dni);
+    } 
 }
 

@@ -384,7 +384,25 @@ public class PedidoData {
         return pedidos;
     }
 
-    
+    public List<Integer> obtenerTodosLosIdPedidos() {
+        List<Integer> idsPedidos = new ArrayList<>();
+        String sql = "SELECT idPedido FROM pedido";
+
+        try (PreparedStatement stmt = con.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            // Recorrer el resultado de la consulta y agregar los IDs a la lista
+            while (rs.next()) {
+                idsPedidos.add(rs.getInt("idPedido"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al obtener los IDs de pedidos: " + e.getMessage());
+        }
+
+        return idsPedidos;
+    }
+
 
     
    

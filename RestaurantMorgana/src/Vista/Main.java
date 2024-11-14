@@ -61,7 +61,7 @@ public class Main {
      
      //1. Crear y guardar un Mesero
      Mesero nuevoMesero = new Mesero ("Matias", 4134576, "266343234", "matiSo@gmail.com", LocalDate.of(2024,10,26), "noche", "Interior", true);
-     Mesero meseroExistente= meseroData.buscarMeseroPorDni(nuevoMesero.getDni());
+     Mesero meseroExistente= meseroData.buscarMeseroPorDni1(nuevoMesero.getDni());
      if(meseroExistente==null){
          meseroData.guardarMesero(nuevoMesero); 
      }else {

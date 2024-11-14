@@ -1,4 +1,3 @@
-
 package Vista;
 
 import javax.swing.*;
@@ -23,32 +22,30 @@ import Persistencia.ProductoData;
 import java.sql.Connection;
 import java.util.Calendar;
 
-    
-
 /**
  *
  * @author Roma
  */
 public class GPedidos1 extends javax.swing.JPanel {
-    private Connection con; 
-    private PedidoData pedidoData; 
+
+    private Connection con;
+    private PedidoData pedidoData;
     private ProductoData productoData;
-    private PedidoProductoData pedidoProductoData; 
+    private PedidoProductoData pedidoProductoData;
     private MesaData mesaData;
     private MeseroData meseroData;
     private DefaultTableModel modeloPedidos;
     private DefaultTableModel modeloProductos;
     private ButtonGroup grupoEstadoPedido;
     private ButtonGroup grupoEstadoProducto;
-   
-    
+
     public GPedidos1(Connection connection) {
         initComponents();
-         if (connection == null) {
+        if (connection == null) {
             throw new IllegalArgumentException("La conexión no puede ser nula");
         }
         // Inicialización de conexión
-        this.con = Conexion.getConexion(); 
+        this.con = Conexion.getConexion();
         this.pedidoData = new PedidoData(con);
         this.productoData = new ProductoData(con);
         this.pedidoProductoData = new PedidoProductoData(con);
@@ -56,9 +53,9 @@ public class GPedidos1 extends javax.swing.JPanel {
         this.meseroData = new MeseroData(con);
         if (this.meseroData != null) {
             this.meseroData.listarMeseros();
-            } else {
-                System.out.println("meseroData es null");
-            }
+        } else {
+            System.out.println("meseroData es null");
+        }
 
         inicializarGruposBotones();
         cargarNombresMeseros();
@@ -75,9 +72,9 @@ public class GPedidos1 extends javax.swing.JPanel {
         cargarPedidosEnTabla(pedidoData.listarPedidos());
         cargarProductosEnTabla(pedidoProductoData.obtenerPedidosProductos());
         configurarSeleccionPedidos();
-       
-    }
+        cargarIDsPedidosEnSpinner();
 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,7 +96,6 @@ public class GPedidos1 extends javax.swing.JPanel {
         jBGuardar = new javax.swing.JButton();
         jBModificar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jSID = new javax.swing.JSpinner();
         Limpiar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jRON = new javax.swing.JRadioButton();
@@ -113,6 +109,7 @@ public class GPedidos1 extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         jCNombre = new javax.swing.JComboBox<>();
         jDate2 = new com.toedter.calendar.JDateChooser();
+        jSID = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTPedido = new javax.swing.JTable();
@@ -181,12 +178,6 @@ public class GPedidos1 extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("pedido ID");
 
-        jSID.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSIDStateChanged(evt);
-            }
-        });
-
         Limpiar.setText("Limpiar");
         Limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,6 +230,17 @@ public class GPedidos1 extends javax.swing.JPanel {
         jDate2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDate2PropertyChange(evt);
+            }
+        });
+
+        jSID.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSIDStateChanged(evt);
+            }
+        });
+        jSID.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jSIDPropertyChange(evt);
             }
         });
 
@@ -298,9 +300,9 @@ public class GPedidos1 extends javax.swing.JPanel {
                         .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jSID, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSID, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
                         .addComponent(Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(9, 9, 9))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -362,7 +364,7 @@ public class GPedidos1 extends javax.swing.JPanel {
                 .addComponent(jDate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jDate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -472,27 +474,6 @@ public class GPedidos1 extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jBModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel11)
-                                .addGap(27, 27, 27)
-                                .addComponent(jSIDPROD, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jRON1)
-                                    .addComponent(jBGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jROFF1))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -529,6 +510,27 @@ public class GPedidos1 extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jScrollPane2)))
                 .addContainerGap(95, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jBModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel11)
+                                .addGap(27, 27, 27)
+                                .addComponent(jSIDPROD, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jRON1)
+                                    .addComponent(jBGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jROFF1))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,7 +553,7 @@ public class GPedidos1 extends javax.swing.JPanel {
                     .addComponent(IDPROD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(jCPROD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(CANT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -593,7 +595,7 @@ public class GPedidos1 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDatePropertyChange
-         if ("date".equals(evt.getPropertyName())) {  // Verifica que el cambio sea en la propiedad 'date'
+        if ("date".equals(evt.getPropertyName())) {  // Verifica que el cambio sea en la propiedad 'date'
             Date selectedDate = jDate.getDate();
             if (selectedDate != null) {
                 // Convertir la fecha seleccionada a LocalDate y establecer el rango de día completo
@@ -622,10 +624,10 @@ public class GPedidos1 extends javax.swing.JPanel {
         calSeleccionada.set(Calendar.MINUTE, horaSeleccionada.getMinutes());
 
         // Comparar fecha y hora seleccionada con fecha y hora actual
-        if (calSeleccionada.get(Calendar.YEAR) != calActual.get(Calendar.YEAR) ||
-            calSeleccionada.get(Calendar.DAY_OF_YEAR) != calActual.get(Calendar.DAY_OF_YEAR) ||
-            calSeleccionada.get(Calendar.HOUR_OF_DAY) != calActual.get(Calendar.HOUR_OF_DAY) ||
-            calSeleccionada.get(Calendar.MINUTE) != calActual.get(Calendar.MINUTE)) {
+        if (calSeleccionada.get(Calendar.YEAR) != calActual.get(Calendar.YEAR)
+                || calSeleccionada.get(Calendar.DAY_OF_YEAR) != calActual.get(Calendar.DAY_OF_YEAR)
+                || calSeleccionada.get(Calendar.HOUR_OF_DAY) != calActual.get(Calendar.HOUR_OF_DAY)
+                || calSeleccionada.get(Calendar.MINUTE) != calActual.get(Calendar.MINUTE)) {
 
             JOptionPane.showMessageDialog(this, "El pedido solo puede guardarse en el momento actual.", "Fecha y hora no válidas", JOptionPane.WARNING_MESSAGE);
             return;
@@ -682,8 +684,8 @@ public class GPedidos1 extends javax.swing.JPanel {
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-     try {
-            
+        try {
+
             int idPedido = (int) jSID.getValue();
             if (idPedido <= 0) {
                 JOptionPane.showMessageDialog(this, "ID de Pedido no válido.", "Error", JOptionPane.WARNING_MESSAGE);
@@ -695,12 +697,11 @@ public class GPedidos1 extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "No se encontró el pedido con el ID especificado.");
                 return;
             }
-            
+
             if (!p.isEstado()) {
                 JOptionPane.showMessageDialog(this, "No se puede modificar un pedido que ya está en estado de pago.", "Pedido no modificable", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-
 
             // Verificar que la mesa seleccionada sea válida
             int idMesa = (int) jSIdMesa.getValue();
@@ -752,56 +753,6 @@ public class GPedidos1 extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jBModificarActionPerformed
 
-    private void jSIDStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSIDStateChanged
-        int idPedido = (int) jSID.getValue();
-
-        // Si el ID de pedido es 0, limpiar los campos y salir del método
-        if (idPedido == 0) {
-            limpiarCamposYTablas();
-            return; 
-        }
-
-        // Buscar el pedido por ID
-        Pedido pedido = pedidoData.buscarPedidoPorId(idPedido);
-
-        if (pedido != null) {
-            try {
-                // Cargar datos del pedido en los componentes
-                jSIdMesa.setValue(pedido.getMesa().getIdMesa());
-                jSIDMesero.setValue(pedido.getMesero().getIdMesero());
-                jCNombre.setSelectedItem(pedido.getMesero().getNombre());
-
-                // Asignar la fecha completa al componente de fecha
-                Date fecha = Date.from(pedido.getFechaHora().atZone(ZoneId.systemDefault()).toInstant());
-                jDate.setDate(fecha);
-
-                // Extraer y asignar solo la hora
-                Date timeValue = Date.from(pedido.getFechaHora().toLocalTime()
-                                       .atDate(LocalDate.of(1970, 1, 1))
-                                       .atZone(ZoneId.systemDefault())
-                                       .toInstant());
-                jSHora.setValue(timeValue);
-
-                // Seleccionar el estado del pedido
-                jRON.setSelected(pedido.isEstado());
-
-                // Cargar el pedido en la tabla `jTPedido`
-                cargarPedidosEnTabla(List.of(pedido));
-
-                // Obtener los productos asociados al pedido y cargarlos en la tabla `jTProd`
-                List<PedidoProducto> productos = pedidoProductoData.obtenerProductosPorPedido(pedido);
-                cargarProductosEnTabla(productos);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error al cargar los datos del pedido: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                limpiarCamposYTablas();
-            }
-        } else {
-            // Mostrar mensaje de error si no se encontró el pedido
-            JOptionPane.showMessageDialog(this, "No se encontró un pedido con el ID especificado.", "Error", JOptionPane.WARNING_MESSAGE);
-            limpiarCamposYTablas();
-        }
-    }//GEN-LAST:event_jSIDStateChanged
-
     private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
         limpiarCamposYTablas();
     }//GEN-LAST:event_LimpiarActionPerformed
@@ -816,17 +767,20 @@ public class GPedidos1 extends javax.swing.JPanel {
 
     private void jCBSectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBSectorActionPerformed
         if (jCBSector.getSelectedItem() != null) {
-            String selectedSector  = jCBSector.getSelectedItem().toString().toLowerCase();
+            String selectedSector = jCBSector.getSelectedItem().toString().toLowerCase();
             actualizarSpinnersConMesas(selectedSector);
-            filtrarPedidoPorSector(selectedSector);  
-            System.out.println("Sector seleccionado: " + selectedSector );
+            filtrarPedidoPorSector(selectedSector);
         }
     }//GEN-LAST:event_jCBSectorActionPerformed
 
     private void jSIDMeseroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSIDMeseroStateChanged
         int idMesero = (int) jSIDMesero.getValue();
         
-        
+        if (idMesero == 0) {
+            limpiarCamposYTablas();
+            return;
+        }
+
         Mesero mesero = meseroData.buscarMeseroPorId(idMesero);
 
         if (mesero != null) {
@@ -840,11 +794,11 @@ public class GPedidos1 extends javax.swing.JPanel {
             modeloProductos.setRowCount(0); // Limpiar la tabla de productos antes de cargar nuevos datos
             for (Pedido pedido : pedidos) {
                 List<PedidoProducto> productos = pedidoProductoData.obtenerProductosPorPedido(pedido); // Obtener productos de cada pedido
-                cargarProductosEnTabla(productos); 
+                cargarProductosEnTabla(productos);
             }
         } else {
             jCNombre.setSelectedIndex(-1); // Deselecciona cualquier opción en el JComboBox
-            JOptionPane.showMessageDialog(this, "No se encontró un mesero con el ID especificado.", "Error", JOptionPane.WARNING_MESSAGE);
+           
             modeloPedidos.setRowCount(0); // Limpia la tabla de pedidos
             modeloProductos.setRowCount(0); // Limpia la tabla de productos
         }
@@ -871,7 +825,7 @@ public class GPedidos1 extends javax.swing.JPanel {
     }//GEN-LAST:event_jBModificar1ActionPerformed
 
     private void jSIDPRODStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSIDPRODStateChanged
-            IDPROD.addChangeListener(e -> {
+        IDPROD.addChangeListener(e -> {
             int idProducto = (int) IDPROD.getValue();
 
             Producto producto = productoData.buscarProductoPorId(idProducto);
@@ -893,14 +847,14 @@ public class GPedidos1 extends javax.swing.JPanel {
 
     private void jBGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardar1ActionPerformed
         PedidoProducto pedidoProducto = new PedidoProducto();
-    
+
         // Obtener el pedido y producto
         int idPedido = (int) IDPEDIDO.getValue();
         int idProducto = (int) IDPROD.getValue();
-        
-            // Verificar si el ID de pedido o producto es 0, en cuyo caso se termina el proceso
+
+        // Verificar si el ID de pedido o producto es 0, en cuyo caso se termina el proceso
         if (idPedido == 0 || idProducto == 0) {
-            return; 
+            return;
         }
         Pedido pedido = pedidoData.buscarPedidoPorId(idPedido);
         Producto producto = productoData.buscarProductoPorId(idProducto);
@@ -965,33 +919,107 @@ public class GPedidos1 extends javax.swing.JPanel {
     }//GEN-LAST:event_IDPRODStateChanged
 
     private void CANTPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CANTPropertyChange
-            CANT.addChangeListener(ev -> {
+        CANT.addChangeListener(ev -> {
             int cantidad = (int) CANT.getValue();
 
             // Obtener el precio unitario desde jTPRECIO, si ya está configurado como precio unitario
             double precioUnitario;
             try {
-               precioUnitario = Double.parseDouble(jTPRECIO.getText()) / cantidad; // Si jTPRECIO ya tiene el precio total
+                precioUnitario = Double.parseDouble(jTPRECIO.getText()) / cantidad; // Si jTPRECIO ya tiene el precio total
             } catch (NumberFormatException ex) {
-               precioUnitario = 0.0;
-               
+                precioUnitario = 0.0;
+
             }
 
             double precioTotal = precioUnitario * cantidad;
             jTPRECIO.setText(String.valueOf(precioTotal)); // Actualiza jTPRECIO con el precio total
         });
     }//GEN-LAST:event_CANTPropertyChange
-    
-    private void actualizarSpinnersConMesas(String sector) {  
+
+    private void jSIDPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jSIDPropertyChange
+        
+    }//GEN-LAST:event_jSIDPropertyChange
+
+    private void jSIDStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSIDStateChanged
+        int idPedido = (int) jSID.getValue();
+
+        // Verificar si el valor de idPedido es válido (por ejemplo, no negativo ni cero)
+        if (idPedido <= 0) {
+            // Si el ID es inválido (por ejemplo, 0 o negativo), limpiar campos y salir
+            limpiarCamposYTablas();
+            return;
+        }
+
+        // Intentar obtener el pedido por ID
+        Pedido pedido = pedidoData.buscarPedidoPorId(idPedido);
+
+        // Verificar si se encuentra el pedido
+        if (pedido != null) {
+            try {
+                // Si el pedido existe, se pueden cargar los datos
+                // Verifica si la mesa existe antes de asignar valores
+                if (pedido.getMesa() != null) {
+                    jSIdMesa.setValue(pedido.getMesa().getIdMesa());
+                } else {
+                    jSIdMesa.setValue(0); // Valor predeterminado si no hay mesa
+                }
+
+                // Verifica si el mesero existe antes de asignar valores
+                if (pedido.getMesero() != null) {
+                    jSIDMesero.setValue(pedido.getMesero().getIdMesero());
+                    jCNombre.setSelectedItem(pedido.getMesero().getNombre());
+                } else {
+                    jSIDMesero.setValue(0); // Valor predeterminado si no hay mesero
+                    jCNombre.setSelectedItem(null);
+                }
+
+                // Asignar la fecha completa al componente de fecha
+                Date fecha = Date.from(pedido.getFechaHora().atZone(ZoneId.systemDefault()).toInstant());
+                jDate.setDate(fecha);
+
+                // Extraer y asignar solo la hora
+                LocalTime localTime = pedido.getFechaHora().toLocalTime();
+                SpinnerDateModel model = new SpinnerDateModel();
+                model.setValue(Date.from(localTime.atDate(LocalDate.of(1970, 1, 1)).atZone(ZoneId.systemDefault()).toInstant()));
+                jSHora.setModel(model);
+                JSpinner.DateEditor editor = new JSpinner.DateEditor(jSHora, "HH:mm:ss");
+                jSHora.setEditor(editor);
+
+                // Seleccionar el estado del pedido
+                if (pedido.isEstado()) {
+                    jRON.setSelected(true);
+                } else {
+                    jROFF.setSelected(true);
+                }
+
+                // Cargar el pedido en la tabla `jTPedido`
+                cargarPedidosEnTabla(List.of(pedido));
+
+                // Obtener los productos asociados al pedido y cargarlos en la tabla `jTProd`
+                List<PedidoProducto> productos = pedidoProductoData.obtenerProductosPorPedido(pedido);
+                cargarProductosEnTabla(productos);
+            } catch (Exception e) {
+                // Si ocurre un error al cargar los datos del pedido, mostrar mensaje y limpiar campos
+                JOptionPane.showMessageDialog(this, "Error al cargar los datos del pedido: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                limpiarCamposYTablas();
+            }
+        } else {
+            // Si no se encuentra el pedido, mostrar mensaje de error y limpiar los campos
+            JOptionPane.showMessageDialog(this, "No se encontró un pedido con el ID especificado.", "Error", JOptionPane.WARNING_MESSAGE);
+            limpiarCamposYTablas();
+        }
+    }//GEN-LAST:event_jSIDStateChanged
+
+    private void actualizarSpinnersConMesas(String sector) {
         // Listar mesas en el sector y filtrar solo las que están en situación "Libre" y con estado true
         List<Mesa> mesas = mesaData.listarMesasPorSector(sector).stream()
-            .filter(mesa -> "Libre".equalsIgnoreCase(mesa.getSituacion()) && mesa.isEstado())
-            .toList();
+                .filter(mesa -> "Libre".equalsIgnoreCase(mesa.getSituacion()) && mesa.isEstado())
+                .toList();
 
         // Obtener los IDs de las mesas que cumplen con los criterios
         List<Integer> mesaIds = mesas.stream()
-            .map(Mesa::getIdMesa)
-            .toList();
+                .map(Mesa::getIdMesa)
+                .toList();
 
         if (!mesaIds.isEmpty()) {
             // Convertir la lista de IDs a un arreglo de Integer
@@ -1009,12 +1037,12 @@ public class GPedidos1 extends javax.swing.JPanel {
 
     private void filtrarPedidoPorSector(String sector) {
         modeloPedidos.setRowCount(0);
-        List<Pedido> pedidos = pedidoData.obtenerPedidosPorSector(sector);         
+        List<Pedido> pedidos = pedidoData.obtenerPedidosPorSector(sector);
         cargarPedidosEnTabla(pedidos);
     }
-    
+
     private void filtrarPorRangoFechaHora(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
-        modeloPedidos.setRowCount(0); 
+        modeloPedidos.setRowCount(0);
 
         // Verificar que fechaInicio sea menor o igual que fechaFin
         if (fechaInicio.isAfter(fechaFin)) {
@@ -1032,18 +1060,17 @@ public class GPedidos1 extends javax.swing.JPanel {
 
     private void cargarPedidosPorEstado(boolean estado) {
         modeloPedidos.setRowCount(0);
-        List<Pedido> pedido = pedidoData.buscarPedidosPorEstado(estado); 
-            for (Pedido p : pedido) {
-                modeloPedidos.addRow(new Object[]{
+        List<Pedido> pedido = pedidoData.buscarPedidosPorEstado(estado);
+        for (Pedido p : pedido) {
+            modeloPedidos.addRow(new Object[]{
                 p.getIdPedido(),
                 p.getMesa().getIdMesa(),
                 p.getMesero().getIdMesero(),
                 p.getFechaHora(),
-                p.isEstado() ? "Activo" : "Pago",
-                });
-            }
+                p.isEstado() ? "Activo" : "Pago",});
+        }
     }
-    
+
     private void configurarTablaProductos() {
         jTProd.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) { // Verifica que la selección haya terminado
@@ -1081,6 +1108,23 @@ public class GPedidos1 extends javax.swing.JPanel {
         });
     }
     
+    private void cargarIDsPedidosEnSpinner() {
+        List<Integer> idsPedidos = pedidoData.obtenerTodosLosIdPedidos(); // Obtener IDs de la base de datos
+
+        // Verificar que la lista no esté vacía
+        if (!idsPedidos.isEmpty()) {
+            // Convertir la lista de IDs a un arreglo para el SpinnerListModel
+            Integer[] idsArray = idsPedidos.toArray(new Integer[0]);
+
+            // Establecer el modelo del spinner con los IDs de pedidos
+            jSID.setModel(new SpinnerListModel(idsArray));
+        } else {
+            // Si no hay pedidos, establecer el spinner con un valor por defecto
+            jSID.setModel(new SpinnerNumberModel(0, 0, 0, 1));
+            JOptionPane.showMessageDialog(this, "No se encontraron pedidos en la base de datos.", "Sin pedidos", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
     private void agregarListeners() {
         // Listener para actualizar jsidmesero cuando se seleccione un nombre en jtnombre
         jCNombre.addActionListener(e -> {
@@ -1099,14 +1143,10 @@ public class GPedidos1 extends javax.swing.JPanel {
             Mesero mesero = meseroData.buscarMeseroPorId(idMesero);
             if (mesero != null) {
                 jCNombre.setSelectedItem(mesero.getNombre());
-            } else {
-                JOptionPane.showMessageDialog(null, "No se encontró un mesero con el ID: " + idMesero);
+            
             }
         });
     }
-    
-
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1160,14 +1200,12 @@ public class GPedidos1 extends javax.swing.JPanel {
     private javax.swing.JTable jTPedido;
     private javax.swing.JTable jTProd;
     // End of variables declaration//GEN-END:variables
-    
-    
 
     private void cargarDatosPedidos() {
-        List<Pedido> pedidos = pedidoData.listarPedidos();  
+        List<Pedido> pedidos = pedidoData.listarPedidos();
         cargarPedidosEnTabla(pedidos);
     }
-    
+
     private void cargarPedidosEnTabla(List<Pedido> pedidos) {
         modeloPedidos.setRowCount(0);
         for (Pedido p : pedidos) {
@@ -1176,10 +1214,10 @@ public class GPedidos1 extends javax.swing.JPanel {
             });
         }
     }
-       
+
     private void cargarDatosProd() {
-        modeloProductos.setRowCount(0); 
-        List<PedidoProducto> producto = pedidoProductoData.obtenerPedidosProductos(); 
+        modeloProductos.setRowCount(0);
+        List<PedidoProducto> producto = pedidoProductoData.obtenerPedidosProductos();
         cargarProductosEnTabla(producto);
     }
 
@@ -1191,7 +1229,7 @@ public class GPedidos1 extends javax.swing.JPanel {
             });
         }
     }
-    
+
     private void inicializarGruposBotones() {
         grupoEstadoPedido = new ButtonGroup();
         grupoEstadoPedido.add(jRON);
@@ -1212,6 +1250,7 @@ public class GPedidos1 extends javax.swing.JPanel {
         };
         jTPedido.setModel(modeloPedidos);
         jTPedido.getTableHeader().setReorderingAllowed(false);
+        jTPedido.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Configuración del modelo de tabla para productos
         modeloProductos = new DefaultTableModel(new String[]{"ID", "IDPedido", "IDProducto", "Cantidad", "Subtotal", "Estado"}, 0) {
@@ -1222,6 +1261,7 @@ public class GPedidos1 extends javax.swing.JPanel {
         };
         jTProd.setModel(modeloProductos);
         jTProd.getTableHeader().setReorderingAllowed(false);
+        jTProd.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     private void configurarSeleccionPedidos() {
@@ -1245,7 +1285,6 @@ public class GPedidos1 extends javax.swing.JPanel {
     private void configurarSpinners() {
         jSIDMesero.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
         jSIdMesa.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
-        jSID.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
         IDPEDIDO.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
         IDPROD.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
         CANT.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
@@ -1260,7 +1299,7 @@ public class GPedidos1 extends javax.swing.JPanel {
             jCNombre.addItem(mesero.getNombre()); // Agregar nombre al JComboBox
         }
     }
-    
+
     private void configurarListenerComboBoxMesero() {
         jCNombre.addActionListener(e -> {
             String nombreSeleccionado = (String) jCNombre.getSelectedItem();
@@ -1275,7 +1314,7 @@ public class GPedidos1 extends javax.swing.JPanel {
             }
         });
     }
-    
+
     private void configurarListenerSpinnerMesero() {
         jSIDMesero.addChangeListener(e -> {
             int idMeseroSeleccionado = (int) jSIDMesero.getValue();
@@ -1293,8 +1332,8 @@ public class GPedidos1 extends javax.swing.JPanel {
                     }
                 }
             } else {
-                jCNombre.setSelectedIndex(-1); 
-                jCBSector.setSelectedIndex(-1); 
+                jCNombre.setSelectedIndex(-1);
+                jCBSector.setSelectedIndex(-1);
             }
         });
     }
@@ -1324,17 +1363,13 @@ public class GPedidos1 extends javax.swing.JPanel {
     }
 
     private void configureDateTimePickers() {
-        Date fechaActual = new Date();
+        
         jDate.setDateFormatString("dd-MM-yyyy");
-        jDate.setMinSelectableDate(new Date());
-        jDate.setDate(fechaActual); // Establece la fecha actual como la fecha seleccionada
-        jDate.setMinSelectableDate(fechaActual); // Fecha mínima
-        jDate.setMaxSelectableDate(fechaActual); // Fecha máxima
+        
         jSHora.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.MINUTE));
         jSHora.setEditor(new JSpinner.DateEditor(jSHora, "HH:mm"));
         jDate1.setDateFormatString("dd-MM-yyyy");
         jDate2.setDateFormatString("dd-MM-yyyy");
-      
 
         jDate1.addPropertyChangeListener("date", evt -> {
             if (jDate1.getDate() != null && jDate2.getDate() != null) {
@@ -1371,27 +1406,25 @@ public class GPedidos1 extends javax.swing.JPanel {
     }
 
     private void limpiarCamposYTablas() {
-            jCNombre.setSelectedIndex(-1);
-            jCBSector.setSelectedIndex(-1);
-            jCPROD.setSelectedIndex(-1);
-            jSIdMesa.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
-            jSIDMesero.setValue(0);
-            jSID.setValue(0);
-            IDPEDIDO.setValue(0);
-            IDPROD.setValue(0);
-            CANT.setValue(0);
-            jSIDPROD.setValue(0);
-            jTPRECIO.setText("");
-            jDate.setCalendar(null);
-            jDate1.setCalendar(null);
-            jDate2.setCalendar(null);
-            jSHora.setValue(new Date());
-            grupoEstadoPedido.clearSelection();
-            grupoEstadoProducto.clearSelection();
-            modeloPedidos.setRowCount(0);
-            modeloProductos.setRowCount(0);
+        jCNombre.setSelectedIndex(-1);
+        jCBSector.setSelectedIndex(-1);
+        jCPROD.setSelectedIndex(-1);
+        jSIdMesa.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
+        jSIDMesero.setValue(0);
+        jSID.setValue(0);
+        IDPEDIDO.setValue(0);
+        IDPROD.setValue(0);
+        CANT.setValue(0);
+        jSIDPROD.setValue(0);
+        jTPRECIO.setText("");
+        jDate.setCalendar(null);
+        jDate1.setCalendar(null);
+        jDate2.setCalendar(null);
+        jSHora.setValue(new Date());
+        grupoEstadoPedido.clearSelection();
+        grupoEstadoProducto.clearSelection();
+        modeloPedidos.setRowCount(0);
+        modeloProductos.setRowCount(0);
     }
-
-
 
 }
