@@ -49,7 +49,6 @@ public class ClienteVerMenu extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jtPrecioMinimo = new javax.swing.JTextField();
         jtPrecioMaximo = new javax.swing.JTextField();
-        jbFiltrar = new javax.swing.JButton();
         jbBebida = new javax.swing.JButton();
         jbTrago = new javax.swing.JButton();
         jbDesayuno = new javax.swing.JButton();
@@ -105,11 +104,9 @@ public class ClienteVerMenu extends javax.swing.JInternalFrame {
                 jtPrecioMaximoActionPerformed(evt);
             }
         });
-
-        jbFiltrar.setText("Filtrar");
-        jbFiltrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbFiltrarActionPerformed(evt);
+        jtPrecioMaximo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtPrecioMaximoKeyReleased(evt);
             }
         });
 
@@ -121,11 +118,8 @@ public class ClienteVerMenu extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jbFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtPrecioMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtPrecioMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,9 +138,7 @@ public class ClienteVerMenu extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(jtPrecioMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
 
@@ -373,48 +365,37 @@ public class ClienteVerMenu extends javax.swing.JInternalFrame {
         }                                        
 
     }//GEN-LAST:event_jbBebidaActionPerformed
-
-    private void jbFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFiltrarActionPerformed
     
-        try{
-        //Validar que los campos no esten vacíos
-        if (jtPrecioMinimo.getText().isEmpty() || jtPrecioMinimo.getText().isEmpty() ){
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos de precio requeridos.");
-                return; 
-        } else {
-            
-        // Obtener los valores de precio ingresados por consola
-        double precioMinimo = Double.parseDouble(jtPrecioMinimo.getText());
-        double precioMaximo = Double.parseDouble(jtPrecioMinimo.getText());
-        
-        // Limpiar cualquier dato anterior en la tabla:
+    
+    private void jtPrecioMaximoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPrecioMaximoKeyReleased
         modelo.setRowCount(0);
-        // Armar la lista de productos por rango de precio requerido
-        List<Producto> productos = productoData.buscarProductoPorPrecio(precioMinimo, precioMaximo);
-        
-        if (productos.isEmpty()){
-            JOptionPane.showMessageDialog(this, "No hay productos en ese rango de precios");
-            return; 
+        String textoMin = jtPrecioMinimo.getText().trim();
+        String textoMax = jtPrecioMaximo.getText().trim();
+
+        if (!textoMin.isEmpty() && !textoMax.isEmpty()) {
+            try {
+                double precioMin = Double.parseDouble(textoMin);
+                double precioMax = Double.parseDouble(textoMax);
+                List<Producto> productosFiltrados = productoData.buscarProductoPorPrecio(precioMin, precioMax);
+
+                for (Producto p : productosFiltrados) {
+                    modelo.addRow(new Object[]{
+                        
+                        p.getCodigo(),
+                        p.getTipo(),
+                        p.getNombre(),
+                        p.getPrecio(),
+                        p.getDescripcion(),
+                        
+                    });
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Por favor ingresa valores numéricos válidos para el rango de precio.");
+            }
         }
-        
-        // Recorrer la lista de productos y agregar cada producto a la tabla
-        for (Producto producto : productos) {
-        modelo.addRow(new Object[]{
-            producto.getCodigo(),
-            producto.getNombre(),
-            producto.getPrecio(),
-            producto.getDescripcion(),
-            producto.getStock(),
-            
-             });
-        }
-        }
-        }catch(NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Error en el formato de los datos numéricos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }//GEN-LAST:event_jbFiltrarActionPerformed
-        jtPrecioMinimo.setText("");
-        jtPrecioMaximo.setText("");
-    }
+                       
+    }//GEN-LAST:event_jtPrecioMaximoKeyReleased
+
         
 //METODOS PARA MI TABLA DE PRODUCTOS
 
@@ -487,7 +468,6 @@ public class ClienteVerMenu extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbBebida;
     private javax.swing.JButton jbCena;
     private javax.swing.JButton jbDesayuno;
-    private javax.swing.JButton jbFiltrar;
     private javax.swing.JButton jbTrago;
     private javax.swing.JTable jtMenuProductos;
     private javax.swing.JTextField jtPrecioMaximo;

@@ -54,8 +54,19 @@ public class MeseroData {
         String sql = "UPDATE mesero SET nombre = ?, dni = ?, telefono = ?, email = ?, fechaRegistro = ?, turno = ?, sector = ?, estado = ? WHERE idMesero = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
-            setMeseroParameters(ps, mesero);
-            ps.setInt(9, mesero.getIdMesero());
+        
+        
+        ps.setString(1, mesero.getNombre());
+        ps.setInt(2, mesero.getDni());
+        ps.setString(3, mesero.getTelefono());
+        ps.setString(4, mesero.getEmail());
+        ps.setDate(5, Date.valueOf(mesero.getFechaRegistro()));
+        ps.setString(6, mesero.getTurno());
+        ps.setString(7, mesero.getSector());
+        ps.setBoolean(8, mesero.getEstado());
+        
+        ps.setInt(9, mesero.getIdMesero());
+        
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
