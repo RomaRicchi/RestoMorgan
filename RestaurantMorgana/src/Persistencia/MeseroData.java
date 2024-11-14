@@ -10,11 +10,14 @@ import java.sql.Date ;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class MeseroData {
     // Atributo
     private Connection con; // Conexión a la base de datos
+    private static final String[] SECTORES = {"Terraza", "Patio", "Comedor"};
+    private static final String[] TURNOS = {"Mañana", "Tarde"};
 
     // Constructor
     public MeseroData(Connection connection) {
@@ -283,6 +286,30 @@ public class MeseroData {
         return meseros;
     }
     
-    
+    public void asignarSectoresYTurnosAleatoriamente() {
+        List<Mesero> meseros = listarMeseros();
+        Random random = new Random();
+        
+        if (meseros!= null){
+
+        for (Mesero mesero : meseros) {
+            // Selección aleatoria de sector y turno
+            String sector = SECTORES[random.nextInt(SECTORES.length)];
+            String turno = TURNOS[random.nextInt(TURNOS.length)];
+
+            // Asignamos sector y turno al mesero
+            mesero.setSector(sector);
+            mesero.setTurno(turno);
+
+            // Actualizamos el mesero en la base de datos
+            modificarMesero(mesero);
+            
+            JOptionPane.showMessageDialog(null,"Asignación aleatoria de sectores y turnos completada.");
+        }
+        }else{
+            JOptionPane.showMessageDialog(null,"error listar meseros");    
+                }
+  
+    }
 }
 
